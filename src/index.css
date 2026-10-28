@@ -1,0 +1,101 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Tokens BPMO · H2D. Documentados en docs/BPMO_Especificacion_Diseno_v0_1.md §A.
+   Base y estados heredados del sistema "Alba" (emaresa-clima-demo); primario desde el logo H2D. */
+:root {
+  /* Base */
+  --bg: #fbf9f5;
+  --surface: #ffffff;
+  --sunken: #f6f3ed;
+  --line: #e6e2dc;
+  --line-soft: #eeebe5;
+
+  /* Tinta */
+  --ink: #201a2c;
+  --ink-2: #656070; /* texto secundario, 6,1:1 */
+  --ink-3: #8d8a97; /* solo iconos y placeholders, nunca texto esencial */
+
+  /* Marca H2D */
+  --brand: #742a8a;
+  --brand-deep: #561f67;
+  --brand-mid: #9a4bb0;
+  --brand-soft: #f4eaf6;
+  --brand-wash: #faf5fb;
+  --brand-magenta: #b0286f; /* SOLO dentro del logo */
+
+  /* Semáforos: icono + etiqueta + color, siempre */
+  --ok: #009956;
+  --ok-soft: #d9fae3;
+  --ok-ink: #00572e;
+  --warn: #dd7000;
+  --warn-soft: #ffeecd;
+  --warn-ink: #7f4413;
+  --crit: #de3b3d;
+  --crit-soft: #ffeae9;
+  --crit-ink: #9b1e22;
+
+  /* Elevación */
+  --sh1: 0 0 0 1px rgba(32, 26, 44, 0.05), 0 1px 2px rgba(32, 26, 44, 0.04), 0 4px 14px -4px rgba(32, 26, 44, 0.08);
+  --sh2: 0 0 0 1px rgba(32, 26, 44, 0.05), 0 2px 4px rgba(32, 26, 44, 0.05), 0 14px 28px -8px rgba(32, 26, 44, 0.16);
+  --sh3: 0 2px 6px rgba(32, 26, 44, 0.08), 0 24px 48px -12px rgba(32, 26, 44, 0.28);
+  --scrim: rgba(32, 26, 44, 0.5);
+
+  color-scheme: light;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  font-size: 14px;
+  line-height: 22px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-variant-numeric: tabular-nums;
+}
+
+a { color: var(--brand); text-decoration: none; }
+a:hover { color: var(--brand-deep); }
+
+button, input, select, textarea { font: inherit; color: inherit; }
+
+:focus-visible { outline: 3px solid var(--brand-mid); outline-offset: 2px; }
+
+.skeleton {
+  background: linear-gradient(90deg, var(--line-soft) 0%, var(--line) 50%, var(--line-soft) 100%);
+  background-size: 200% 100%;
+}
+
+@media print {
+  aside, header, [data-no-print] { display: none !important; }
+  body { background: #fff; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
+
+/* Tarjetas del Dashboard (spec §C.2, README): el lavado y el borde interior los da el semáforo. */
+.kpi-card { transition: transform 180ms cubic-bezier(.2, .7, .3, 1), box-shadow 180ms cubic-bezier(.2, .7, .3, 1); }
+.kpi-card--link:hover { transform: translateY(-3px); }
+.kpi-card--ok, .kpi-card--info, .kpi-card--na { background: var(--surface); box-shadow: var(--sh1); }
+.kpi-card--ok.kpi-card--link:hover, .kpi-card--info.kpi-card--link:hover { box-shadow: var(--sh2); }
+.kpi-card--na { background: var(--sunken); box-shadow: none; }
+.kpi-card--warn { background: radial-gradient(640px 220px at 0 0, var(--warn-soft), transparent 70%), var(--surface); box-shadow: var(--sh1); }
+.kpi-card--warn.kpi-card--link:hover { box-shadow: var(--sh2); }
+.kpi-card--crit {
+  background: radial-gradient(640px 220px at 0 0, var(--crit-soft), transparent 70%), #fff;
+  box-shadow: inset 0 0 0 1.5px var(--crit), 0 4px 14px -4px rgba(32, 26, 44, 0.08);
+}
+.kpi-card--crit.kpi-card--link:hover { box-shadow: inset 0 0 0 1.5px var(--crit), 0 14px 28px -8px rgba(32, 26, 44, 0.16); }

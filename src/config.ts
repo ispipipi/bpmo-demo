@@ -1,0 +1,7 @@
+export const APP_NAME = 'BPMO'
+export const POWERED_BY = 'Powered by NPR'
+export const VERSION = '0.1.0'
+export const D0 = '2027-01-12'
+export const STORAGE_KEY = 'npr_bpmo_h2d_demo_v1'
+export const SIDEBAR_KEY = 'npr_bpmo_h2d_sidebar_v1'
+export const DEMO_BANNER = 'Demo con datos ficticios — caso ESVAL'
