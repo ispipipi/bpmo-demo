@@ -38,16 +38,16 @@ function Item({ item, role, collapsed, data, onNavigate }: { item: NavItem; role
         </span>
       )}
       {collapsed ? (
-        <span className="text-[13px] font-bold" aria-hidden="true">{label.slice(0, 2)}</span>
+        <span className="text-[15px] font-bold" aria-hidden="true">{label.slice(0, 2)}</span>
       ) : (
         <>
           <span className="min-w-0 flex-1 leading-[18px]">{label}</span>
           {count !== undefined && count > 0 && (
-            <span className="inline-flex h-5 min-w-5 items-center justify-center rounded-full bg-crit-ink px-1.5 text-[11.5px] font-bold text-white" aria-label={`${count} nuevas`}>
+            <span className="inline-flex h-5 min-w-5 items-center justify-center rounded-full bg-crit-ink px-1.5 text-[13.5px] font-bold text-white" aria-label={`${count} nuevas`}>
               {count}
             </span>
           )}
-          {procs && <span className="flex-none font-mono text-xs text-ink-faint">{procs}</span>}
+          {procs && <span className="flex-none font-mono text-[14px] text-ink-faint">{procs}</span>}
         </>
       )}
       {collapsed && <span className="sr-only">{label}</span>}
@@ -73,8 +73,8 @@ export function Sidebar({
         <img src={`${import.meta.env.BASE_URL}h2d-logo.png`} alt="H2D" width={44} height={44} className="h-11 w-11 flex-none rounded-ctl object-contain" />
         {!collapsed && (
           <div className="leading-tight">
-            <div className="text-[17px] font-extrabold">{APP_NAME}</div>
-            <div className="text-xs text-ink-soft">{POWERED_BY}</div>
+            <div className="text-[19px] font-extrabold">{APP_NAME}</div>
+            <div className="text-[14px] text-ink-soft">{POWERED_BY}</div>
           </div>
         )}
       </div>
@@ -87,7 +87,7 @@ export function Sidebar({
             {collapsed ? (
               <hr className="mx-2 mb-2 border-line-soft" />
             ) : (
-              <div className="mb-1.5 px-3 text-[11px] font-bold uppercase tracking-[0.06em] text-ink-soft">{g.title}</div>
+              <div className="mb-1.5 px-3 text-[13px] font-bold uppercase tracking-[0.06em] text-ink-soft">{g.title}</div>
             )}
             <div className="space-y-0.5">
               {g.items.map((i) => <Item key={i.to} item={i} role={role} collapsed={collapsed} data={data} onNavigate={onNavigate} />)}
@@ -95,7 +95,7 @@ export function Sidebar({
           </div>
         ))}
       </nav>
-      <div className={`border-t border-line-soft py-3 font-mono text-xs text-ink-soft ${collapsed ? 'text-center' : 'px-5'}`}>v{VERSION}</div>
+      <div className={`border-t border-line-soft py-3 font-mono text-[14px] text-ink-soft ${collapsed ? 'text-center' : 'px-5'}`}>v{VERSION}</div>
     </div>
   )
 }

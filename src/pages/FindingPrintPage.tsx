@@ -26,7 +26,7 @@ export default function FindingPrintPage({ kind }: { kind: 'acta' | 'paquete' })
   }
 
   const Row = ({ k, v }: { k: string; v: string }) => (
-    <div className="flex gap-4 border-t border-line-soft py-2 text-[13.5px] first:border-t-0"><dt className="w-[190px] flex-none text-ink-soft">{k}</dt><dd className="font-semibold">{v}</dd></div>
+    <div className="flex gap-4 border-t border-line-soft py-2 text-[15px] first:border-t-0"><dt className="w-[190px] flex-none text-ink-soft">{k}</dt><dd className="font-semibold">{v}</dd></div>
   )
 
   return (
@@ -69,7 +69,7 @@ export default function FindingPrintPage({ kind }: { kind: 'acta' | 'paquete' })
           <>
             <section className="mt-5">
               <h2 className="text-h3">Plan de corrección</h2>
-              <table className="mt-2 w-full text-left text-[13.5px]">
+              <table className="mt-2 w-full text-left text-[15px]">
                 <thead className="bg-sunken text-label text-ink-soft"><tr><th className="px-3 py-2">Acción</th><th className="px-3 py-2">Responsable</th><th className="px-3 py-2">Fecha comprometida</th></tr></thead>
                 <tbody>
                   {f.plan.map((a) => <tr key={a.id} className="border-t border-line-soft"><td className="px-3 py-2">{a.action}</td><td className="px-3 py-2">{a.owner}</td><td className="px-3 py-2 font-mono">{formatDate(a.dueAt)}</td></tr>)}
@@ -84,12 +84,12 @@ export default function FindingPrintPage({ kind }: { kind: 'acta' | 'paquete' })
                 <Row k="Referencia" v={f.approval?.ref ?? '—'} />
               </dl>
             </section>
-            <p className="mt-6 rounded-ctl bg-sunken px-4 py-3 text-[13.5px]">{PACKAGE_NOTICE}.</p>
-            <p className="mt-2 text-[12.5px] text-ink-soft">Paquete generado el {formatDate(f.packageGeneratedAt ?? '')}.</p>
+            <p className="mt-6 rounded-ctl bg-sunken px-4 py-3 text-[15px]">{PACKAGE_NOTICE}.</p>
+            <p className="mt-2 text-[14.5px] text-ink-soft">Paquete generado el {formatDate(f.packageGeneratedAt ?? '')}.</p>
           </>
         )}
 
-        <footer className="mt-8 border-t border-line-soft pt-3 text-[12px] text-ink-soft">{SIMULATED_LEGEND}</footer>
+        <footer className="mt-8 border-t border-line-soft pt-3 text-[14px] text-ink-soft">{SIMULATED_LEGEND}</footer>
       </article>
     </div>
   )

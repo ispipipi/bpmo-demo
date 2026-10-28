@@ -61,7 +61,7 @@ function ApprovalDialog({ approver, onClose, onSubmit }: { approver: Approver; o
         if (Object.keys(errors).length === 0) onSubmit({ approver: who, result, date, ref, comment })
       }}
     >
-      <p className="mb-4 text-[12px]">* obligatorio</p>
+      <p className="mb-4 text-[14px]">* obligatorio</p>
       <div className="flex flex-col gap-4">
         <Field id="vb-who" label="Aprobador" required>
           {(a) => (
@@ -71,10 +71,10 @@ function ApprovalDialog({ approver, onClose, onSubmit }: { approver: Approver; o
           )}
         </Field>
         <div>
-          <div className="mb-1.5 text-[12.5px] font-bold">Resultado *</div>
+          <div className="mb-1.5 text-[14.5px] font-bold">Resultado *</div>
           <div role="group" aria-label="Resultado" className="flex rounded-ctl bg-sunken p-1">
             {(['Aprobado', 'Observado'] as const).map((r) => (
-              <button key={r} type="button" aria-pressed={result === r} onClick={() => setResult(r)} className={`h-9 flex-1 rounded-[7px] text-[13.5px] font-bold ${result === r ? (r === 'Aprobado' ? 'bg-ok-soft text-ok-ink' : 'bg-warn-soft text-warn-ink') : 'text-ink-soft'}`}>
+              <button key={r} type="button" aria-pressed={result === r} onClick={() => setResult(r)} className={`h-9 flex-1 rounded-[7px] text-[15px] font-bold ${result === r ? (r === 'Aprobado' ? 'bg-ok-soft text-ok-ink' : 'bg-warn-soft text-warn-ink') : 'text-ink-soft'}`}>
                 {r === 'Aprobado' ? '✓ Aprobado' : '▲ Observado'}
               </button>
             ))}
@@ -210,7 +210,7 @@ export default function RatRequestPage() {
             <p className="text-body">{req.description}</p>
             {req.type === 'Modificar' && open && (
               <div className="mt-4 overflow-x-auto rounded-ctl border border-line-soft">
-                <table className="w-full min-w-[520px] text-left text-[13px]">
+                <table className="w-full min-w-[520px] text-left text-[15px]">
                   <thead className="bg-sunken text-label text-ink-soft"><tr><th className="px-3 py-2">Campo</th><th className="px-3 py-2">Registro actual</th><th className="px-3 py-2">Propuesta</th></tr></thead>
                   <tbody>
                     {changes.length === 0 ? (
@@ -231,7 +231,7 @@ export default function RatRequestPage() {
 
           <section className="rounded-card bg-surface p-5 shadow-card min-[900px]:p-6" aria-label="Vistos buenos">
             <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
-              <h2 className="text-[17px] font-extrabold">Vistos buenos</h2>
+              <h2 className="text-[19px] font-extrabold">Vistos buenos</h2>
               <span className="text-dense text-ink-soft">{view.summary.approved} de {APPROVERS.length} aprobados</span>
               <SegmentBar
                 label={`${view.summary.approved} de ${APPROVERS.length} vistos buenos aprobados`}

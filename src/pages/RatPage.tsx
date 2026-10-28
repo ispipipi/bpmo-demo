@@ -60,8 +60,8 @@ export default function RatPage() {
   const nameOf = (id: string | null) => (id ? activities.find((a) => a.id === id)?.name ?? '—' : 'Actividad nueva')
 
   const actColumns: Column<RatActivity>[] = [
-    { key: 'id', header: 'ID', render: (a) => <span className="font-mono text-[13px] font-semibold">{a.id}</span>, sort: (x, y) => x.id.localeCompare(y.id) },
-    { key: 'name', header: 'Actividad', render: (a) => <><div className="font-bold">{a.name}</div><div className="text-[12px] text-ink-soft">{a.area}</div></>, sort: (x, y) => x.name.localeCompare(y.name) },
+    { key: 'id', header: 'ID', render: (a) => <span className="font-mono text-[15px] font-semibold">{a.id}</span>, sort: (x, y) => x.id.localeCompare(y.id) },
+    { key: 'name', header: 'Actividad', render: (a) => <><div className="font-bold">{a.name}</div><div className="text-[14px] text-ink-soft">{a.area}</div></>, sort: (x, y) => x.name.localeCompare(y.name) },
     { key: 'basis', header: 'Base de licitud', render: (a) => <span className="text-ink-soft">{a.legalBasis}</span> },
     { key: 'purpose', header: 'Finalidad', render: (a) => <span className="text-ink-soft">{a.purpose}</span> },
     { key: 'intl', header: 'T. intl.', render: (a) => <span className="font-bold">{a.international ? 'Sí' : 'No'}</span> },
@@ -72,14 +72,14 @@ export default function RatPage() {
     },
   ]
   const reqColumns: Column<RatRequestView>[] = [
-    { key: 'id', header: 'ID', render: (v) => <Link to={`/rat/solicitud/${v.req.id}`} className="font-mono text-[13px] font-semibold text-ink hover:text-brand">{v.req.id}</Link> },
+    { key: 'id', header: 'ID', render: (v) => <Link to={`/rat/solicitud/${v.req.id}`} className="font-mono text-[15px] font-semibold text-ink hover:text-brand">{v.req.id}</Link> },
     { key: 'type', header: 'Tipo', render: (v) => v.req.type },
     { key: 'act', header: 'Actividad', render: (v) => <span className="max-w-[220px] truncate">{v.req.activityId ? `${v.req.activityId} · ${nameOf(v.req.activityId)}` : 'Actividad nueva'}</span> },
     { key: 'requester', header: 'Solicitante', render: (v) => v.req.requester },
-    { key: 'received', header: 'Recibida', align: 'right', render: (v) => <span className="font-mono text-[13px]">{formatDate(v.req.receivedAt)}</span> },
-    { key: 'due', header: 'Plazo interno', align: 'right', render: (v) => <span className={`font-mono text-[13px] ${v.tone === 'crit' ? 'font-bold text-crit-ink' : ''}`}>{formatDate(v.due)}</span> },
+    { key: 'received', header: 'Recibida', align: 'right', render: (v) => <span className="font-mono text-[15px]">{formatDate(v.req.receivedAt)}</span> },
+    { key: 'due', header: 'Plazo interno', align: 'right', render: (v) => <span className={`font-mono text-[15px] ${v.tone === 'crit' ? 'font-bold text-crit-ink' : ''}`}>{formatDate(v.due)}</span> },
     { key: 'status', header: 'Estado', render: (v) => <RequestStatusChip status={v.req.status} /> },
-    { key: 'vb', header: 'Vistos buenos', align: 'center', render: (v) => <span className="font-mono text-[13px]">{v.summary.approved}/5</span> },
+    { key: 'vb', header: 'Vistos buenos', align: 'center', render: (v) => <span className="font-mono text-[15px]">{v.summary.approved}/5</span> },
     { key: 'sla', header: 'Semáforo', width: '190px', align: 'center', render: (v) => <RatSlaChip v={v} /> },
   ]
 
@@ -108,7 +108,7 @@ export default function RatPage() {
           <label className="relative">
             <span className="sr-only">Buscar</span>
             <IconSearch size={16} className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-ink-faint" />
-            <input type="search" value={q} onChange={(e) => setQ(e.target.value)} placeholder={tab === 'actividades' ? 'Buscar actividad…' : 'Buscar solicitud…'} className="h-9 w-[260px] max-w-full rounded-ctl bg-surface pl-9 pr-3 text-[13px] shadow-[inset_0_0_0_1.5px_var(--line)] outline-none focus:shadow-[inset_0_0_0_1.5px_var(--brand-mid)]" />
+            <input type="search" value={q} onChange={(e) => setQ(e.target.value)} placeholder={tab === 'actividades' ? 'Buscar actividad…' : 'Buscar solicitud…'} className="h-9 w-[260px] max-w-full rounded-ctl bg-surface pl-9 pr-3 text-[15px] shadow-[inset_0_0_0_1.5px_var(--line)] outline-none focus:shadow-[inset_0_0_0_1.5px_var(--brand-mid)]" />
           </label>
           {tab === 'actividades' ? (
             <>
@@ -118,7 +118,7 @@ export default function RatPage() {
           ) : (
             <FilterSelect label="Estado" value={estado} onChange={setEstado} options={['todos', 'Recibida', 'En validación', 'Observada', 'Aprobada', 'Rechazada', 'Registrada'].map((e) => ({ value: e, label: e === 'todos' ? 'Todos' : e }))} />
           )}
-          <span className="ml-auto text-[13px] text-ink-soft" aria-live="polite">
+          <span className="ml-auto text-[15px] text-ink-soft" aria-live="polite">
             {tab === 'actividades' ? `${rows.length} de ${activities.length} visibles` : `${reqRows.length} de ${views.length} visibles`}
           </span>
         </div>
@@ -168,12 +168,12 @@ export default function RatPage() {
           />
           {open.map((r) => (
             <Link key={r.id} to={`/rat/solicitud/${r.id}`} className="flex items-center justify-between rounded-card bg-warn-soft px-4 py-3 text-warn-ink hover:text-warn-ink">
-              <span><span className="block text-[13px] font-bold">Solicitud abierta</span><span className="font-mono text-[12.5px]">{r.id} · {Object.values(r.approvals).filter((a) => a.state === 'Aprobado').length} de 5</span></span>
+              <span><span className="block text-[15px] font-bold">Solicitud abierta</span><span className="font-mono text-[14.5px]">{r.id} · {Object.values(r.approvals).filter((a) => a.state === 'Aprobado').length} de 5</span></span>
               <span className="flex items-center gap-1 text-label"><StateShape tone="warn" size={9} /> Abrir ›</span>
             </Link>
           ))}
           <div>
-            <h3 className="mb-2 border-b border-line pb-2 text-[13.5px] font-bold text-brand-deep">Historial de cambios</h3>
+            <h3 className="mb-2 border-b border-line pb-2 text-[15px] font-bold text-brand-deep">Historial de cambios</h3>
             <HistoryList entries={selectedActivity.history} formatDate={formatDate} />
           </div>
         </SidePanel>

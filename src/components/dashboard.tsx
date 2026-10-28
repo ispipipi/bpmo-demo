@@ -42,7 +42,7 @@ export function Figure({ value, unit, faint = false }: { value: ReactNode; unit?
   return (
     <div className="flex flex-wrap items-baseline gap-x-2.5 gap-y-0.5">
       <span className={`text-kpi ${faint ? 'text-ink-faint' : ''}`}>{value}</span>
-      {unit && <span className="text-[14px] text-ink-soft">{unit}</span>}
+      {unit && <span className="text-[16px] text-ink-soft">{unit}</span>}
     </div>
   )
 }
@@ -83,8 +83,8 @@ export function SubCard({ to, title, process, children }: { to: string; title: s
   return (
     <Link to={to} className="kpi-card kpi-card--ok kpi-card--link flex flex-col rounded-card p-5 text-ink hover:text-ink">
       <div className="mb-3 flex items-start justify-between gap-2">
-        <h3 className="text-[16px] font-bold leading-6">
-          {title} <span className="font-mono text-xs font-normal text-ink-faint">{process}</span>
+        <h3 className="text-[18px] font-bold leading-6">
+          {title} <span className="font-mono text-[14px] font-normal text-ink-faint">{process}</span>
         </h3>
         <span className="grid h-6 w-6 flex-none place-items-center rounded-full bg-brand-soft text-brand" aria-hidden="true">
           <IconArrowRight size={13} />

@@ -68,11 +68,11 @@ function Shell({ children }: { children: ReactNode }) {
       )}
 
       <div className="flex h-screen min-w-0 flex-1 flex-col print:block print:h-auto">
-        <div className="flex min-h-9 flex-none flex-wrap items-center justify-center gap-x-3 gap-y-1 bg-ink px-4 py-1.5 text-center text-[12.5px] font-semibold text-white min-[640px]:text-[13px] print:hidden" role="note">
+        <div className="flex min-h-9 flex-none flex-wrap items-center justify-center gap-x-3 gap-y-1 bg-ink px-4 py-1.5 text-center text-[14.5px] font-semibold text-white min-[640px]:text-[15px] print:hidden" role="note">
           <span>{DEMO_BANNER}</span>
-          {state.role === 'legal' && <span className="rounded-full bg-white px-2.5 py-0.5 text-xs font-bold text-ink">Vista de solo lectura</span>}
+          {state.role === 'legal' && <span className="rounded-full bg-white px-2.5 py-0.5 text-[14px] font-bold text-ink">Vista de solo lectura</span>}
           {storage !== 'ok' && (
-            <span className="inline-flex items-center gap-1.5 text-[12.5px] font-semibold">
+            <span className="inline-flex items-center gap-1.5 text-[14.5px] font-semibold">
               <IconInfo size={14} />
               Los cambios no se conservarán al recargar
             </span>
@@ -87,7 +87,7 @@ function Shell({ children }: { children: ReactNode }) {
         <main ref={mainRef} id="contenido" tabIndex={-1} className="min-h-0 flex-1 overflow-y-auto px-4 pb-16 pt-4 outline-none min-[900px]:px-6 min-[1200px]:px-8 print:overflow-visible">
           <div className="flex max-w-[1440px] flex-col gap-5">
             {children}
-            <footer className="font-mono text-xs text-ink-soft">{APP_NAME} v{VERSION} · {POWERED_BY}</footer>
+            <footer className="font-mono text-[14px] text-ink-soft">{APP_NAME} v{VERSION} · {POWERED_BY}</footer>
           </div>
         </main>
       </div>

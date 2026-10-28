@@ -4,8 +4,8 @@ import { StateShape } from './StatusChip'
 
 export const Meta = ({ label, children }: { label: string; children: ReactNode }) => (
   <div className="min-w-0">
-    <dt className="text-[11.5px] font-bold uppercase tracking-[0.04em] text-ink-soft">{label}</dt>
-    <dd className="mt-1 text-[14px] font-semibold">{children}</dd>
+    <dt className="text-[13.5px] font-bold uppercase tracking-[0.04em] text-ink-soft">{label}</dt>
+    <dd className="mt-1 text-[16px] font-semibold">{children}</dd>
   </div>
 )
 
@@ -41,7 +41,7 @@ export function TabBar<T extends string = 'detalle' | 'historial'>({
           type="button"
           aria-selected={tab === t.id}
           onClick={() => onChange(t.id)}
-          className={`-mb-px h-11 text-[14px] font-bold ${tab === t.id ? 'text-brand-deep' : 'text-ink-soft hover:text-ink'}`}
+          className={`-mb-px h-11 text-[16px] font-bold ${tab === t.id ? 'text-brand-deep' : 'text-ink-soft hover:text-ink'}`}
           style={tab === t.id ? { boxShadow: 'inset 0 -2px 0 var(--brand)' } : undefined}
         >
           {t.label}
@@ -56,7 +56,7 @@ export function HistoryList({ entries, formatDate }: { entries: readonly { date:
     <ol className="flex flex-col">
       {[...entries].reverse().map((h, i) => (
         <li key={i} className="flex gap-4 border-t border-line-soft py-2.5 first:border-t-0">
-          <span className="w-[88px] flex-none font-mono text-[13px] text-ink-soft">{formatDate(h.date)}</span>
+          <span className="w-[88px] flex-none font-mono text-[15px] text-ink-soft">{formatDate(h.date)}</span>
           <span className="text-dense"><strong className="font-semibold">{h.actor}</strong> · {h.text}</span>
         </li>
       ))}
@@ -102,7 +102,7 @@ export function TextDialog({
       }}
     >
       {intro && <p className="mb-3">{intro}</p>}
-      <label className="block text-[12.5px] font-bold text-ink" htmlFor="text-dialog">
+      <label className="block text-[14.5px] font-bold text-ink" htmlFor="text-dialog">
         {label} · <span className={text.trim().length >= min ? 'text-ok-ink' : ''}>{Math.min(text.trim().length, 999)}/{min} mín.</span>
       </label>
       <textarea
@@ -113,11 +113,11 @@ export function TextDialog({
         onBlur={() => setTouched(true)}
         aria-invalid={error ? true : undefined}
         aria-describedby={error ? 'text-dialog-error' : undefined}
-        className="mt-1.5 w-full rounded-ctl bg-surface p-3 text-[14px] text-ink shadow-[inset_0_0_0_1.5px_var(--line)] outline-none focus:shadow-[inset_0_0_0_1.5px_var(--brand-mid)]"
+        className="mt-1.5 w-full rounded-ctl bg-surface p-3 text-[16px] text-ink shadow-[inset_0_0_0_1.5px_var(--line)] outline-none focus:shadow-[inset_0_0_0_1.5px_var(--brand-mid)]"
         style={error ? { boxShadow: 'inset 0 0 0 1.5px var(--crit)' } : undefined}
       />
       {error && (
-        <p id="text-dialog-error" className="mt-1.5 flex items-center gap-1.5 text-[12px] font-semibold text-crit-ink">
+        <p id="text-dialog-error" className="mt-1.5 flex items-center gap-1.5 text-[14px] font-semibold text-crit-ink">
           <StateShape tone="crit" size={9} /> {error}
         </p>
       )}
@@ -130,19 +130,19 @@ export function Field({ id, label, error, hint, required, children }: { id: stri
   const describedBy = error ? `${id}-error` : hint ? `${id}-hint` : undefined
   return (
     <div>
-      <label htmlFor={id} className="block text-[12.5px] font-bold text-ink">{label}{required && ' *'}</label>
+      <label htmlFor={id} className="block text-[14.5px] font-bold text-ink">{label}{required && ' *'}</label>
       <div className="mt-1.5">{children({ id, 'aria-invalid': error ? true : undefined, 'aria-describedby': describedBy })}</div>
       {error ? (
-        <p id={`${id}-error`} className="mt-1.5 flex items-start gap-1.5 text-[12px] font-semibold text-crit-ink"><span className="mt-1"><StateShape tone="crit" size={9} /></span>{error}</p>
+        <p id={`${id}-error`} className="mt-1.5 flex items-start gap-1.5 text-[14px] font-semibold text-crit-ink"><span className="mt-1"><StateShape tone="crit" size={9} /></span>{error}</p>
       ) : hint ? (
-        <p id={`${id}-hint`} className="mt-1.5 text-[12.5px] text-ink-soft">{hint}</p>
+        <p id={`${id}-hint`} className="mt-1.5 text-[14.5px] text-ink-soft">{hint}</p>
       ) : null}
     </div>
   )
 }
 
 export const inputClass = (invalid?: boolean) =>
-  `w-full rounded-ctl bg-surface px-3 text-[14px] text-ink outline-none ${
+  `w-full rounded-ctl bg-surface px-3 text-[16px] text-ink outline-none ${
     invalid ? 'shadow-[inset_0_0_0_1.5px_var(--crit)]' : 'shadow-[inset_0_0_0_1.5px_var(--line)]'
   } focus:shadow-[inset_0_0_0_1.5px_var(--brand-mid)]`
 
@@ -210,7 +210,7 @@ export function FieldsDialog({
             return (
               <label key={f.key} className="flex items-center gap-2 text-dense font-semibold text-ink">
                 <input type="checkbox" checked={values[f.key] === 'true'} disabled={f.disabled} onChange={(e) => set(f.key, e.target.checked ? 'true' : '')} /> {f.label}
-                {f.hint && <span className="text-[12.5px] font-normal text-ink-soft">{f.hint}</span>}
+                {f.hint && <span className="text-[14.5px] font-normal text-ink-soft">{f.hint}</span>}
               </label>
             )
           }

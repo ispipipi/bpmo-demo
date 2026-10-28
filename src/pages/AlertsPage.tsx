@@ -49,8 +49,8 @@ export default function AlertsPage() {
         </span>
       ),
     },
-    { key: 'entity', header: 'Entidad', render: (a) => <><div className="font-mono text-[12.5px]">{a.entityId ?? a.module}</div><div className="text-[12px] text-ink-soft">{a.module}</div></> },
-    { key: 'date', header: 'Fecha demo', align: 'right', render: (a) => <span className="font-mono text-[13px]">{formatDate(a.date)}</span>, sort: (a, b) => a.date.localeCompare(b.date) },
+    { key: 'entity', header: 'Entidad', render: (a) => <><div className="font-mono text-[14.5px]">{a.entityId ?? a.module}</div><div className="text-[14px] text-ink-soft">{a.module}</div></> },
+    { key: 'date', header: 'Fecha demo', align: 'right', render: (a) => <span className="font-mono text-[15px]">{formatDate(a.date)}</span>, sort: (a, b) => a.date.localeCompare(b.date) },
     { key: 'status', header: 'Estado', render: (a) => <span className={a.status === 'Nueva' ? 'font-bold' : 'text-ink-soft'}>{a.status}</span> },
     {
       key: 'actions',
@@ -62,7 +62,7 @@ export default function AlertsPage() {
             <button type="button" className={BTN.ghost} onClick={() => run({ kind: 'reminder', id: a.id }, `Recordatorio enviado a ${reminderTarget(state, a)?.who} (simulado).`)}>Enviar recordatorio</button>
           )}
           {a.status === 'Nueva' && (
-            <button type="button" className={`${BTN.secondary} h-8 px-3 text-[12.5px]`} onClick={() => run({ kind: 'attend', id: a.id }, 'Alerta marcada como atendida.')}>Marcar atendida</button>
+            <button type="button" className={`${BTN.secondary} h-8 px-3 text-[14.5px]`} onClick={() => run({ kind: 'attend', id: a.id }, 'Alerta marcada como atendida.')}>Marcar atendida</button>
           )}
           <Link to={a.to} className="text-label whitespace-nowrap">Abrir caso ›</Link>
         </span>
@@ -75,7 +75,7 @@ export default function AlertsPage() {
       <div className="flex flex-wrap items-end justify-between gap-3">
         <div>
           <h1 className="text-h1">Alertas y SLA</h1>
-          <p className="text-[15px] text-ink-soft">Qué empujar hoy. Las alertas por regla se recalculan siempre.</p>
+          <p className="text-[17px] text-ink-soft">Qué empujar hoy. Las alertas por regla se recalculan siempre.</p>
         </div>
         <Link to="/alertas/parametros" className={`${BTN.secondary} hover:text-ink`}>Ir a Parámetros</Link>
       </div>
@@ -93,7 +93,7 @@ export default function AlertsPage() {
           />
           <FilterSelect label="Estado" value={estado} onChange={setEstado} options={[{ value: 'todas', label: 'Todas' }, { value: 'Nueva', label: 'Nueva' }, { value: 'Atendida', label: 'Atendida' }]} />
           <FilterSelect label="Módulo" value={module} onChange={setModule} options={[{ value: 'todos', label: 'Todos' }, ...MODULES.map((m) => ({ value: m, label: m }))]} />
-          <span className="ml-auto text-[13px] text-ink-soft" aria-live="polite">{shown.length} {shown.length === 1 ? 'resultado' : 'resultados'}</span>
+          <span className="ml-auto text-[15px] text-ink-soft" aria-live="polite">{shown.length} {shown.length === 1 ? 'resultado' : 'resultados'}</span>
         </div>
         <DataTable
             label="Alertas"

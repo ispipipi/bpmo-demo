@@ -56,11 +56,11 @@ export function RatNewRequest({ onClose }: { onClose: () => void }) {
 
   return (
     <Modal title="Registrar nueva solicitud" variant="form" confirmLabel="Registrar solicitud" onClose={onClose} onConfirm={submit} confirmDisabled={blockedByConsents}>
-      <p className="mb-4 text-[12px]">* obligatorio</p>
+      <p className="mb-4 text-[14px]">* obligatorio</p>
       <div className="flex flex-col gap-4">
         <div role="group" aria-label="Tipo de solicitud" className="flex rounded-ctl bg-sunken p-1">
           {TYPES.map((t) => (
-            <button key={t} type="button" aria-pressed={type === t} onClick={() => pickType(t)} className={`h-9 flex-1 rounded-[7px] text-[13.5px] font-bold ${type === t ? 'bg-surface text-brand-deep shadow-card' : 'text-ink-soft'}`}>{t}</button>
+            <button key={t} type="button" aria-pressed={type === t} onClick={() => pickType(t)} className={`h-9 flex-1 rounded-[7px] text-[15px] font-bold ${type === t ? 'bg-surface text-brand-deep shadow-card' : 'text-ink-soft'}`}>{t}</button>
           ))}
         </div>
 
@@ -86,7 +86,7 @@ export function RatNewRequest({ onClose }: { onClose: () => void }) {
 
         {type !== 'Eliminar' && (type === 'Crear' || activityId) && (
           <fieldset className="flex flex-col gap-4 rounded-card border border-line-soft p-4">
-            <legend className="px-1 text-[12.5px] font-bold">{type === 'Crear' ? 'Actividad propuesta' : 'Contenido propuesto (edita lo que cambia)'}</legend>
+            <legend className="px-1 text-[14.5px] font-bold">{type === 'Crear' ? 'Actividad propuesta' : 'Contenido propuesto (edita lo que cambia)'}</legend>
             <Field id="rat-name" label="Nombre" required error={shown('name')}>
               {(a) => <input {...a} value={draft.name} onChange={(e) => set('name', e.target.value)} className={`${inputClass(!!shown('name'))} h-10`} />}
             </Field>
@@ -110,7 +110,7 @@ export function RatNewRequest({ onClose }: { onClose: () => void }) {
             <label className="flex items-center gap-2 text-dense font-semibold">
               <input type="checkbox" checked={draft.international} onChange={(e) => set('international', e.target.checked)} /> Incluye transferencia internacional
             </label>
-            {shown('proposal') && <p role="alert" className="text-[12px] font-semibold text-crit-ink">{errors.proposal}</p>}
+            {shown('proposal') && <p role="alert" className="text-[14px] font-semibold text-crit-ink">{errors.proposal}</p>}
           </fieldset>
         )}
 
@@ -119,7 +119,7 @@ export function RatNewRequest({ onClose }: { onClose: () => void }) {
         </Field>
 
         {warnings.map((w) => (
-          <p key={w.kind} className="flex items-start gap-2 rounded-ctl bg-warn-soft px-3 py-2 text-[13px] text-warn-ink"><IconInfo size={15} className="mt-0.5 flex-none" /> {w.text}</p>
+          <p key={w.kind} className="flex items-start gap-2 rounded-ctl bg-warn-soft px-3 py-2 text-[15px] text-warn-ink"><IconInfo size={15} className="mt-0.5 flex-none" /> {w.text}</p>
         ))}
       </div>
     </Modal>

@@ -31,14 +31,14 @@ const GLOW: Record<Tone, string> = { crit: 'var(--crit-soft)', warn: 'var(--warn
 export function ResponsibleChip({ responsible }: { responsible: Responsible }) {
   const Icon = responsible === 'H2D' ? IconShield : responsible === 'Compartido' ? IconPeople : IconBuilding
   return (
-    <span className="inline-flex h-6 flex-none items-center gap-1.5 whitespace-nowrap rounded-[6px] bg-surface px-2 text-[12px] font-semibold text-ink-soft shadow-[inset_0_0_0_1px_var(--line)]">
+    <span className="inline-flex h-6 flex-none items-center gap-1.5 whitespace-nowrap rounded-[6px] bg-surface px-2 text-[14px] font-semibold text-ink-soft shadow-[inset_0_0_0_1px_var(--line)]">
       <Icon size={13} />
       {responsible}
     </span>
   )
 }
 
-const Pill = ({ id }: { id: string }) => <span className="flex-none rounded-[6px] bg-sunken px-2 py-0.5 font-mono text-[13px] font-semibold">{id}</span>
+const Pill = ({ id }: { id: string }) => <span className="flex-none rounded-[6px] bg-sunken px-2 py-0.5 font-mono text-[15px] font-semibold">{id}</span>
 
 /** Ficha del proceso (AC-23): plegada para Analista, abierta para Legal; se recuerda por módulo. */
 export function ProcessFicha({ module, processes, notice }: { module: string; processes: readonly ProcessId[]; notice?: string }) {
@@ -69,16 +69,16 @@ export function ProcessFicha({ module, processes, notice }: { module: string; pr
             {defs.map(({ def, status }) => (
               <span key={def.id} className="flex min-w-0 items-center gap-2">
                 <Pill id={def.id} />
-                {defs.length === 1 && <span className="truncate text-[13.5px] font-bold">{def.name}</span>}
+                {defs.length === 1 && <span className="truncate text-[15px] font-bold">{def.name}</span>}
                 {defs.length === 1 && <ResponsibleChip responsible={def.responsible} />}
-                {defs.length === 1 && <span className="hidden truncate text-[13px] text-ink-soft min-[1200px]:inline">{def.trigger}</span>}
+                {defs.length === 1 && <span className="hidden truncate text-[15px] text-ink-soft min-[1200px]:inline">{def.trigger}</span>}
                 <StatusChip tone={status.tone} label={status.label} />
               </span>
             ))}
           </span>
         )}
         {open && <span className="flex-1" />}
-        <span className="inline-flex flex-none items-center gap-1 text-[12.5px] font-bold text-brand">
+        <span className="inline-flex flex-none items-center gap-1 text-[14.5px] font-bold text-brand">
           {open ? 'Ocultar ficha' : 'Ver ficha'}
           {open ? <IconChevronUp size={14} /> : <IconChevronDown size={14} />}
         </span>
@@ -97,7 +97,7 @@ export function ProcessFicha({ module, processes, notice }: { module: string; pr
                 <h2 className="text-h3">{def.name}</h2>
                 <StatusChip tone={status.tone} label={status.label} size="md" />
               </div>
-              <div className="mt-1 text-[13px] text-ink-soft">{def.category}</div>
+              <div className="mt-1 text-[15px] text-ink-soft">{def.category}</div>
               <dl className="mt-3 grid grid-cols-1 gap-4 border-t border-line-soft pt-3 min-[900px]:grid-cols-[1fr_1fr_1.5fr]">
                 <div>
                   <dt className="text-overline text-ink-soft">PERIODICIDAD / GATILLO</dt>

@@ -187,7 +187,7 @@ export default function ArcopDetailPage() {
       ) : (
         <div className="grid grid-cols-1 gap-5 min-[1200px]:grid-cols-[1.7fr_1fr]">
           <div className="flex flex-col gap-5">
-            <Card title="Subtareas" aside={<div className="flex items-center gap-3 text-[13px] text-ink-soft"><span>{done} de {req.subtasks.length} completas</span><Meter value={(done / req.subtasks.length) * 100} tone={done === req.subtasks.length ? 'ok' : 'info'} width={120} label="Subtareas completas" /></div>}>
+            <Card title="Subtareas" aside={<div className="flex items-center gap-3 text-[15px] text-ink-soft"><span>{done} de {req.subtasks.length} completas</span><Meter value={(done / req.subtasks.length) * 100} tone={done === req.subtasks.length ? 'ok' : 'info'} width={120} label="Subtareas completas" /></div>}>
               <ul>
                 {req.subtasks.map((t) => (
                   <li key={t.id} className="grid grid-cols-1 items-center gap-x-4 gap-y-2 border-t border-line-soft py-3 first:border-t-0 min-[640px]:grid-cols-[112px_1fr_auto]">
@@ -205,7 +205,7 @@ export default function ArcopDetailPage() {
                     )}
                     <div className="min-w-0">
                       <div className="text-dense font-semibold">{t.name}</div>
-                      <div className="mt-0.5 flex flex-wrap items-center gap-x-3 gap-y-1 text-[12.5px] text-ink-soft">
+                      <div className="mt-0.5 flex flex-wrap items-center gap-x-3 gap-y-1 text-[14.5px] text-ink-soft">
                         <span className="rounded-[6px] bg-sunken px-1.5 py-0.5 font-semibold">{t.responsible}</span>
                         {t.date && <span className="font-mono">{formatDate(t.date)}</span>}
                         {t.evidenceRef && <span className="font-mono">{t.evidenceRef}</span>}
@@ -232,10 +232,10 @@ export default function ArcopDetailPage() {
                     onChange={(e) => { setDraft(e.target.value); setDraftError(null) }}
                     aria-invalid={draftError ? true : undefined}
                     aria-describedby={draftError ? 'respuesta-error' : undefined}
-                    className="w-full rounded-ctl bg-surface p-3 text-[14px] shadow-[inset_0_0_0_1.5px_var(--line)] outline-none focus:shadow-[inset_0_0_0_1.5px_var(--brand-mid)]"
+                    className="w-full rounded-ctl bg-surface p-3 text-[16px] shadow-[inset_0_0_0_1.5px_var(--line)] outline-none focus:shadow-[inset_0_0_0_1.5px_var(--brand-mid)]"
                     style={draftError ? { boxShadow: 'inset 0 0 0 1.5px var(--crit)' } : undefined}
                   />
-                  {draftError && <p id="respuesta-error" className="mt-1.5 flex items-center gap-1.5 text-[12px] font-semibold text-crit-ink"><StateShape tone="crit" size={9} /> {draftError}</p>}
+                  {draftError && <p id="respuesta-error" className="mt-1.5 flex items-center gap-1.5 text-[14px] font-semibold text-crit-ink"><StateShape tone="crit" size={9} /> {draftError}</p>}
                   <div className="mt-3 flex gap-3">
                     <button type="button" className={BTN.primary} onClick={saveResponse}>Guardar respuesta</button>
                     <button type="button" className={BTN.secondary} onClick={() => setEditing(false)}>Cancelar</button>
@@ -269,7 +269,7 @@ export default function ArcopDetailPage() {
                     <Meta label="Nuevo vencimiento"><span className="font-mono">{formatDate(view.due)}</span></Meta>
                   </dl>
                   <p className="mt-3 text-dense text-ink-soft">Motivo: {req.extension.reason}</p>
-                  {open && <p className="mt-2 flex items-center gap-1.5 text-[12.5px] text-ink-soft"><IconInfo size={14} /> Este caso ya fue prorrogado; no admite una segunda prórroga.</p>}
+                  {open && <p className="mt-2 flex items-center gap-1.5 text-[14.5px] text-ink-soft"><IconInfo size={14} /> Este caso ya fue prorrogado; no admite una segunda prórroga.</p>}
                 </div>
               ) : canEdit ? (
                 <button type="button" className={BTN.secondary} onClick={() => setDialog({ kind: 'extension' })}>Registrar prórroga</button>
@@ -286,7 +286,7 @@ export default function ArcopDetailPage() {
                   <p className="font-semibold">{req.resolution === 'Improcedente' ? 'Cerrada como improcedente' : view.closed?.label}</p>
                   <p className="mt-1 text-ink-soft">Cierre el <span className="font-mono">{formatDate(req.closedAt ?? '')}</span>.</p>
                   {req.rejectionGround && <p className="mt-2 text-ink-soft">Fundamento: {req.rejectionGround}</p>}
-                  <p className="mt-2 text-[12.5px] text-ink-soft">Un caso cerrado no se puede reabrir en este demo.</p>
+                  <p className="mt-2 text-[14.5px] text-ink-soft">Un caso cerrado no se puede reabrir en este demo.</p>
                 </div>
               ) : writable ? (
                 blockers.length === 0 ? (
@@ -302,7 +302,7 @@ export default function ArcopDetailPage() {
             <Card title="Historial reciente">
               <ol className="flex flex-col gap-3">
                 {recent.map((h, i) => (
-                  <li key={i} className="flex gap-3 text-[13px]">
+                  <li key={i} className="flex gap-3 text-[15px]">
                     <span className="mt-1.5 flex-none">{critical(h.text) ? <StateShape tone="crit" size={9} /> : <span className="block h-2 w-2 rounded-full bg-line" />}</span>
                     <span>
                       <span className="font-mono text-ink-soft">{formatDate(h.date)}</span>
@@ -326,8 +326,8 @@ export default function ArcopDetailPage() {
           onClose={() => setDialog(null)}
           onConfirm={() => run({ kind: 'assign', id: req.id, analyst }, `${req.id} asignada a ${analyst}.`) && setDialog(null)}
         >
-          <label htmlFor="analyst" className="block text-[12.5px] font-bold text-ink">Analista</label>
-          <select id="analyst" value={analyst} onChange={(e) => setAnalyst(e.target.value)} className="mt-1.5 h-10 w-full rounded-ctl bg-surface px-3 text-[14px] text-ink shadow-[inset_0_0_0_1.5px_var(--line)]">
+          <label htmlFor="analyst" className="block text-[14.5px] font-bold text-ink">Analista</label>
+          <select id="analyst" value={analyst} onChange={(e) => setAnalyst(e.target.value)} className="mt-1.5 h-10 w-full rounded-ctl bg-surface px-3 text-[16px] text-ink shadow-[inset_0_0_0_1.5px_var(--line)]">
             {ANALYSTS.map((a) => <option key={a} value={a}>{a}</option>)}
           </select>
         </Modal>
@@ -345,8 +345,8 @@ export default function ArcopDetailPage() {
           }}
         >
           <p className="mb-3">La referencia de evidencia es opcional, pero conviene registrarla: la bitácora del caso es la evidencia que exige el proceso.</p>
-          <label htmlFor="evidence" className="block text-[12.5px] font-bold text-ink">Referencia de evidencia (opcional)</label>
-          <input id="evidence" value={evidence} onChange={(e) => setEvidence(e.target.value)} placeholder="Ej.: verificacion_identidad.pdf" className="mt-1.5 h-10 w-full rounded-ctl bg-surface px-3 text-[14px] text-ink shadow-[inset_0_0_0_1.5px_var(--line)] outline-none focus:shadow-[inset_0_0_0_1.5px_var(--brand-mid)]" />
+          <label htmlFor="evidence" className="block text-[14.5px] font-bold text-ink">Referencia de evidencia (opcional)</label>
+          <input id="evidence" value={evidence} onChange={(e) => setEvidence(e.target.value)} placeholder="Ej.: verificacion_identidad.pdf" className="mt-1.5 h-10 w-full rounded-ctl bg-surface px-3 text-[16px] text-ink shadow-[inset_0_0_0_1.5px_var(--line)] outline-none focus:shadow-[inset_0_0_0_1.5px_var(--brand-mid)]" />
         </Modal>
       )}
 

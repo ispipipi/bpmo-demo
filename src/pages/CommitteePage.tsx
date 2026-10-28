@@ -42,9 +42,9 @@ function AgendaDialog({ sessionId, onClose, run }: { sessionId: string; onClose:
         ))}
         {session?.agenda.length === 0 && <li className="text-dense text-ink-soft">La agenda está vacía.</li>}
       </ol>
-      <label htmlFor="agenda-item" className="block text-[12.5px] font-bold text-ink">Nuevo punto</label>
+      <label htmlFor="agenda-item" className="block text-[14.5px] font-bold text-ink">Nuevo punto</label>
       <div className="mt-1.5 flex gap-2">
-        <input id="agenda-item" value={item} onChange={(e) => setItem(e.target.value)} onKeyDown={(e) => { if (e.key === 'Enter' && run({ kind: 'agendaAdd', sessionId, item }, 'Punto agregado a la agenda.')) setItem('') }} className="h-10 flex-1 rounded-ctl bg-surface px-3 text-[14px] text-ink shadow-[inset_0_0_0_1.5px_var(--line)]" />
+        <input id="agenda-item" value={item} onChange={(e) => setItem(e.target.value)} onKeyDown={(e) => { if (e.key === 'Enter' && run({ kind: 'agendaAdd', sessionId, item }, 'Punto agregado a la agenda.')) setItem('') }} className="h-10 flex-1 rounded-ctl bg-surface px-3 text-[16px] text-ink shadow-[inset_0_0_0_1.5px_var(--line)]" />
         <button type="button" className={BTN.secondary} onClick={() => run({ kind: 'agendaAdd', sessionId, item }, 'Punto agregado a la agenda.') && setItem('')}>Agregar</button>
       </div>
     </Modal>
@@ -83,19 +83,19 @@ export default function CommitteePage() {
   const noticeOn = committeeNoticeActive(state)
 
   const columns: Column<(typeof rows)[number]>[] = [
-    { key: 'id', header: 'ID', render: ({ a }) => <span className="font-mono text-[13px] font-semibold">{a.id}</span> },
+    { key: 'id', header: 'ID', render: ({ a }) => <span className="font-mono text-[15px] font-semibold">{a.id}</span> },
     {
       key: 'desc',
       header: 'Acuerdo',
       render: ({ a }) => (
         <div className="max-w-[360px] whitespace-normal">
-          <div className="text-[13.5px]">{a.description}</div>
-          <div className="text-[12px] text-ink-soft">{a.status === 'Cumplido' ? `Cumplido ${formatDate(a.doneAt ?? '')}` : lastFollow(a) ? `Último seguimiento ${formatDate(lastFollow(a)!.date)} · "${lastFollow(a)!.text}"` : 'Sin seguimientos'}</div>
+          <div className="text-[15px]">{a.description}</div>
+          <div className="text-[14px] text-ink-soft">{a.status === 'Cumplido' ? `Cumplido ${formatDate(a.doneAt ?? '')}` : lastFollow(a) ? `Último seguimiento ${formatDate(lastFollow(a)!.date)} · "${lastFollow(a)!.text}"` : 'Sin seguimientos'}</div>
         </div>
       ),
     },
-    { key: 'owner', header: 'Responsable', render: ({ a }) => <span className="rounded-[6px] bg-surface px-2 py-0.5 text-[12px] font-semibold text-ink-soft shadow-[inset_0_0_0_1px_var(--line)]">{a.owner}</span> },
-    { key: 'due', header: 'Comprometido', align: 'right', render: ({ a, st }) => <span className={`font-mono text-[13px] ${st === 'Vencido' ? 'font-bold text-crit-ink' : ''}`}>{formatDate(a.dueAt)}</span>, sort: (x, y) => x.a.dueAt.localeCompare(y.a.dueAt) },
+    { key: 'owner', header: 'Responsable', render: ({ a }) => <span className="rounded-[6px] bg-surface px-2 py-0.5 text-[14px] font-semibold text-ink-soft shadow-[inset_0_0_0_1px_var(--line)]">{a.owner}</span> },
+    { key: 'due', header: 'Comprometido', align: 'right', render: ({ a, st }) => <span className={`font-mono text-[15px] ${st === 'Vencido' ? 'font-bold text-crit-ink' : ''}`}>{formatDate(a.dueAt)}</span>, sort: (x, y) => x.a.dueAt.localeCompare(y.a.dueAt) },
     { key: 'status', header: 'Estado', width: '130px', render: ({ st }) => (st === 'Pendiente' ? <PendingChip label="Pendiente" /> : <StatusChip tone={ST_TONE[st]} label={st} />) },
   ]
 
@@ -104,7 +104,7 @@ export default function CommitteePage() {
       <div className="flex flex-wrap items-end justify-between gap-3">
         <div>
           <h1 className="text-h1">{committee.name}</h1>
-          <p className="text-[15px] text-ink-soft">Periodicidad {committee.periodicity.toLowerCase()} · {held.length} sesiones realizadas</p>
+          <p className="text-[17px] text-ink-soft">Periodicidad {committee.periodicity.toLowerCase()} · {held.length} sesiones realizadas</p>
         </div>
         <div className="flex flex-wrap gap-3">
           {writable && <button type="button" className={BTN.secondary} onClick={() => setDialog('agreement')}>Registrar acuerdo</button>}
@@ -152,10 +152,10 @@ export default function CommitteePage() {
                 <h2 className="text-overline text-ink-soft">PRÓXIMA SESIÓN</h2>
                 <StatusChip tone={noticeOn ? 'warn' : 'ok'} label={`En ${daysLeft(next.date, state.clock)} días`} />
               </div>
-              <p className="mt-3 font-mono text-[22px] font-semibold">{formatDate(next.date)}{next.convocation ? ` · ${next.convocation.time}` : ''}</p>
+              <p className="mt-3 font-mono text-[24px] font-semibold">{formatDate(next.date)}{next.convocation ? ` · ${next.convocation.time}` : ''}</p>
               <p className="mt-1 text-dense text-ink-soft">{next.convocation ? `Convocatoria registrada (simulada): ${next.convocation.place}` : 'Convocatoria no registrada'}</p>
               {next.convocation && <p className="text-dense text-ink-soft">Asistentes: {next.convocation.attendees}</p>}
-              <h3 className="mt-3 text-[13px] font-bold">Agenda</h3>
+              <h3 className="mt-3 text-[15px] font-bold">Agenda</h3>
               <ol className="mt-1">{next.agenda.map((a, i) => <li key={i} className="border-t border-line-soft py-2 text-dense">{i + 1}. {a}</li>)}</ol>
               {writable && (
                 <div className="mt-3 grid grid-cols-2 gap-3">
@@ -170,7 +170,7 @@ export default function CommitteePage() {
               <ul>
                 {held.map((x) => (
                   <li key={x.id} className="flex items-center justify-between border-t border-line-soft py-2.5 first:border-t-0">
-                    <span className="font-mono text-[13px]">{formatDate(x.date)}</span>
+                    <span className="font-mono text-[15px]">{formatDate(x.date)}</span>
                     <Link to={`/comites/acta/${x.id}`} className="text-label">Ver acta</Link>
                   </li>
                 ))}
@@ -198,7 +198,7 @@ export default function CommitteePage() {
             </div>
           )}
           <div>
-            <h3 className="mb-2 border-b border-line pb-2 text-[13.5px] font-bold text-brand-deep">Seguimientos</h3>
+            <h3 className="mb-2 border-b border-line pb-2 text-[15px] font-bold text-brand-deep">Seguimientos</h3>
             {selected.followUps.length === 0 ? <p className="text-dense text-ink-soft">Sin seguimientos.</p> : <HistoryList entries={selected.followUps.map((f) => ({ date: f.date, actor: 'Analista PMO', text: f.text }))} formatDate={formatDate} />}
           </div>
         </SidePanel>
@@ -232,7 +232,7 @@ export default function CommitteePage() {
             { key: 'dueAt', label: 'Fecha comprometida', kind: 'date', required: true },
           ]}
           validate={(v) => ({ ...validateAgreement({ description: v.description ?? '', owner: v.owner ?? '', dueAt: v.dueAt ?? '' }) })}
-          extra={(v) => (dueAlreadyPassed(v.dueAt ?? '', state.clock) ? <p className="flex items-start gap-2 rounded-ctl bg-warn-soft px-3 py-2 text-[13px] text-warn-ink"><IconInfo size={15} className="mt-0.5 flex-none" /> La fecha ya pasó: el acuerdo quedará vencido desde el inicio. Se permite igualmente.</p> : null)}
+          extra={(v) => (dueAlreadyPassed(v.dueAt ?? '', state.clock) ? <p className="flex items-start gap-2 rounded-ctl bg-warn-soft px-3 py-2 text-[15px] text-warn-ink"><IconInfo size={15} className="mt-0.5 flex-none" /> La fecha ya pasó: el acuerdo quedará vencido desde el inicio. Se permite igualmente.</p> : null)}
           confirmLabel="Registrar acuerdo"
           onClose={() => setDialog(null)}
           onSubmit={(v) => run({ kind: 'agreement', description: v.description ?? '', owner: v.owner ?? '', dueAt: v.dueAt ?? '' }, 'Acuerdo registrado.') && setDialog(null)}

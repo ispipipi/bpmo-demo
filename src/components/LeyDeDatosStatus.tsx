@@ -9,7 +9,7 @@ export function LeyDeDatosStatus({ state }: { state: DemoState }) {
     ? 'Ley de Datos: error de conexión (simulado)'
     : `Ley de Datos: Conectado (simulado). Última sincronización: ${sync ? `${formatDate(sync.date)} ${sync.time}` : '—'} (simulada)`
   return (
-    <div className="hidden flex-none whitespace-nowrap text-xs leading-4 min-[900px]:block" title={full} aria-label={full} role="status">
+    <div className="hidden flex-none whitespace-nowrap text-[14px] leading-4 min-[900px]:block" title={full} aria-label={full} role="status">
       <div className="flex items-center gap-1.5 font-semibold">
         <StateShape tone={error ? 'crit' : 'ok'} size={8} />
         {error ? (

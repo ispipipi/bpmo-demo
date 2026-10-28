@@ -141,7 +141,7 @@ export default function DashboardPage() {
     <div className="flex flex-wrap items-end justify-between gap-3">
       <div>
         <h1 className="text-h1">{title}</h1>
-        <p className="text-[15px] text-ink-soft">Estado de cumplimiento por categoría · ESVAL</p>
+        <p className="text-[17px] text-ink-soft">Estado de cumplimiento por categoría · ESVAL</p>
       </div>
       <Link to="/mapa" className="inline-flex items-center gap-1 text-label text-brand">Ver mapa de procesos <IconArrowRight size={14} /></Link>
     </div>

@@ -55,7 +55,7 @@ export default function ParamsPage() {
       <Link to="/alertas" className="inline-flex w-fit text-label text-brand">← Volver a Alertas y SLA</Link>
       <div>
         <h1 className="text-h1">Parámetros</h1>
-        <p className="text-[15px] text-ink-soft">Al guardar se recalculan todos los semáforos y alertas.</p>
+        <p className="text-[17px] text-ink-soft">Al guardar se recalculan todos los semáforos y alertas.</p>
       </div>
       <p className="flex items-center gap-2 rounded-ctl bg-warn-soft px-4 py-3 text-dense font-semibold text-warn-ink"><IconInfo size={16} className="flex-none" /> Los valores por defecto son de demostración y deben validarse con el equipo legal de H2D.</p>
 
@@ -66,8 +66,8 @@ export default function ParamsPage() {
           return (
             <div key={k} className="grid grid-cols-1 items-center gap-3 border-b border-line-soft px-5 py-4 min-[640px]:grid-cols-[1fr_260px]">
               <div>
-                <label htmlFor={`p-${k}`} className="block text-[14.5px] font-bold">{TITLE[k]}</label>
-                <div className="text-[12.5px] text-ink-soft">Entero {spec.min}–{spec.max}</div>
+                <label htmlFor={`p-${k}`} className="block text-[16px] font-bold">{TITLE[k]}</label>
+                <div className="text-[14.5px] text-ink-soft">Entero {spec.min}–{spec.max}</div>
               </div>
               <div>
                 <div className="flex items-center gap-3 min-[640px]:justify-end">
@@ -79,28 +79,28 @@ export default function ParamsPage() {
                     aria-describedby={error ? `p-${k}-error` : undefined}
                     onChange={(e) => setForm((f) => ({ ...f, [k]: e.target.value }))}
                     onBlur={() => setTouched((t) => ({ ...t, [k]: true }))}
-                    className={`h-10 w-[84px] rounded-ctl bg-surface px-3 text-right font-mono text-[14px] font-semibold outline-none ${error ? 'shadow-[inset_0_0_0_1.5px_var(--crit)]' : 'shadow-[inset_0_0_0_1.5px_var(--line)]'} focus:shadow-[inset_0_0_0_1.5px_var(--brand-mid)]`}
+                    className={`h-10 w-[84px] rounded-ctl bg-surface px-3 text-right font-mono text-[16px] font-semibold outline-none ${error ? 'shadow-[inset_0_0_0_1.5px_var(--crit)]' : 'shadow-[inset_0_0_0_1.5px_var(--line)]'} focus:shadow-[inset_0_0_0_1.5px_var(--brand-mid)]`}
                   />
                   <span className="w-[90px] text-dense text-ink-soft">{UNIT[k]}</span>
                 </div>
-                {error && <p id={`p-${k}-error`} className="mt-1.5 flex items-center gap-1.5 text-[12px] font-semibold text-crit-ink min-[640px]:justify-end"><StateShape tone="crit" size={9} /> {error}</p>}
+                {error && <p id={`p-${k}-error`} className="mt-1.5 flex items-center gap-1.5 text-[14px] font-semibold text-crit-ink min-[640px]:justify-end"><StateShape tone="crit" size={9} /> {error}</p>}
               </div>
             </div>
           )
         })}
         <div className="flex flex-wrap items-center justify-between gap-3 px-5 py-4">
-          <button type="button" className="text-[13px] font-bold text-ink-soft hover:text-ink" onClick={() => setConfirmReset(true)}>Restaurar valores por defecto</button>
+          <button type="button" className="text-[15px] font-bold text-ink-soft hover:text-ink" onClick={() => setConfirmReset(true)}>Restaurar valores por defecto</button>
           <div className="flex gap-3">
             <button type="button" className={BTN.secondary} onClick={() => { setForm(toForm(state.params)); setTouched({}) }} disabled={!dirty}>Cancelar</button>
             {hasErrors || !dirty ? (
-              <button type="button" aria-disabled="true" className="inline-flex h-10 cursor-not-allowed items-center rounded-ctl bg-sunken px-[18px] text-[13.5px] font-bold text-ink-faint" onClick={() => setTouched(Object.fromEntries(KEYS.map((k) => [k, true])))}>Guardar parámetros</button>
+              <button type="button" aria-disabled="true" className="inline-flex h-10 cursor-not-allowed items-center rounded-ctl bg-sunken px-[18px] text-[15px] font-bold text-ink-faint" onClick={() => setTouched(Object.fromEntries(KEYS.map((k) => [k, true])))}>Guardar parámetros</button>
             ) : (
               <button type="submit" className={BTN.primary}>Guardar parámetros</button>
             )}
           </div>
         </div>
       </form>
-      <p className="text-[12.5px] text-ink-soft">"Guardar" se deshabilita mientras haya errores o no haya cambios. "Restaurar" pide confirmación.</p>
+      <p className="text-[14.5px] text-ink-soft">"Guardar" se deshabilita mientras haya errores o no haya cambios. "Restaurar" pide confirmación.</p>
 
       {confirmReset && (
         <Modal

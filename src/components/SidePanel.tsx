@@ -40,8 +40,8 @@ export function SidePanel({
     >
       <div className="flex items-start justify-between gap-3">
         <div className="min-w-0">
-          <h2 className="text-[18px] font-extrabold leading-6">{title}</h2>
-          {subtitle && <div className="mt-0.5 text-[13px] text-ink-soft">{subtitle}</div>}
+          <h2 className="text-[20px] font-extrabold leading-6">{title}</h2>
+          {subtitle && <div className="mt-0.5 text-[15px] text-ink-soft">{subtitle}</div>}
         </div>
         <button type="button" aria-label="Cerrar panel" onClick={onClose} className="grid h-8 w-8 flex-none place-items-center rounded-ctl text-ink-soft hover:bg-sunken">
           <IconClose size={16} />

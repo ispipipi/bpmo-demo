@@ -23,7 +23,7 @@ export function DaysCell({ v }: { v: ArcopView }) {
   return (
     <span className={cls}>
       {left < 0 ? `Vencida hace ${-left} d` : `${left} d`}
-      {v.req.extension && <span className="ml-1.5 text-[12px] font-normal text-ink-soft">(prorrogada)</span>}
+      {v.req.extension && <span className="ml-1.5 text-[14px] font-normal text-ink-soft">(prorrogada)</span>}
     </span>
   )
 }
@@ -67,11 +67,11 @@ export default function ArcopListPage() {
   const clear = () => setParams({}, { replace: true })
 
   const columns: Column<ArcopView>[] = [
-    { key: 'id', header: 'ID', render: (v) => <Link to={`/arcop/${v.req.id}`} state={{ from: location.search }} className="font-mono text-[13px] font-semibold text-ink hover:text-brand">{v.req.id}</Link>, sort: (a, b) => a.req.id.localeCompare(b.req.id) },
+    { key: 'id', header: 'ID', render: (v) => <Link to={`/arcop/${v.req.id}`} state={{ from: location.search }} className="font-mono text-[15px] font-semibold text-ink hover:text-brand">{v.req.id}</Link>, sort: (a, b) => a.req.id.localeCompare(b.req.id) },
     { key: 'type', header: 'Tipo', render: (v) => v.req.type, sort: (a, b) => a.req.type.localeCompare(b.req.type) },
     { key: 'holder', header: 'Titular', render: (v) => v.req.holder },
-    { key: 'received', header: 'Recibida', align: 'right', render: (v) => <span className="font-mono text-[13px]">{formatDate(v.req.receivedAt)}</span>, sort: (a, b) => a.req.receivedAt.localeCompare(b.req.receivedAt) },
-    { key: 'due', header: 'Vence', align: 'right', render: (v) => <span className={`font-mono text-[13px] ${v.tone === 'crit' ? 'font-bold text-crit-ink' : ''}`}>{formatDate(v.due)}</span>, sort: (a, b) => a.due.localeCompare(b.due) },
+    { key: 'received', header: 'Recibida', align: 'right', render: (v) => <span className="font-mono text-[15px]">{formatDate(v.req.receivedAt)}</span>, sort: (a, b) => a.req.receivedAt.localeCompare(b.req.receivedAt) },
+    { key: 'due', header: 'Vence', align: 'right', render: (v) => <span className={`font-mono text-[15px] ${v.tone === 'crit' ? 'font-bold text-crit-ink' : ''}`}>{formatDate(v.due)}</span>, sort: (a, b) => a.due.localeCompare(b.due) },
     { key: 'days', header: 'Días restantes', align: 'right', render: (v) => <DaysCell v={v} />, sort: (a, b) => (a.daysLeft ?? 9999) - (b.daysLeft ?? 9999) },
     { key: 'status', header: 'Estado', render: (v) => <EstadoChip status={v.req.status} /> },
     { key: 'sla', header: 'Semáforo', width: '150px', align: 'center', render: (v) => <SlaChip v={v} /> },
@@ -98,7 +98,7 @@ export default function ArcopListPage() {
               value={f.q}
               onChange={(e) => set('q', e.target.value, '')}
               placeholder="Buscar por ID, titular…"
-              className="h-9 w-[280px] max-w-full rounded-ctl bg-surface pl-9 pr-3 text-[13px] shadow-[inset_0_0_0_1.5px_var(--line)] outline-none focus:shadow-[inset_0_0_0_1.5px_var(--brand-mid)]"
+              className="h-9 w-[280px] max-w-full rounded-ctl bg-surface pl-9 pr-3 text-[15px] shadow-[inset_0_0_0_1.5px_var(--line)] outline-none focus:shadow-[inset_0_0_0_1.5px_var(--brand-mid)]"
             />
           </label>
           <FilterSelect label="Estado" value={f.estado} onChange={(v) => set('estado', v)} options={ESTADOS.map((e) => ({ value: e, label: e === 'todos' ? 'Todos' : e === 'abiertas' ? 'Abiertas' : e }))} />
@@ -114,10 +114,10 @@ export default function ArcopListPage() {
               { value: 'ok', label: 'En plazo', count: counts.ok, tone: 'ok' },
             ]}
           />
-          <span className="ml-auto text-[13px] text-ink-soft" aria-live="polite">{rows.length} {rows.length === 1 ? 'resultado' : 'resultados'}</span>
+          <span className="ml-auto text-[15px] text-ink-soft" aria-live="polite">{rows.length} {rows.length === 1 ? 'resultado' : 'resultados'}</span>
         </div>
         {active && (
-          <div className="flex flex-wrap items-center gap-2 px-4 pb-3 text-[12.5px]">
+          <div className="flex flex-wrap items-center gap-2 px-4 pb-3 text-[14.5px]">
             <span className="text-ink-soft">Filtros activos:</span>
             {f.q && <button type="button" className={BTN.ghost} onClick={() => set('q', '', '')}>Búsqueda: {f.q} ✕</button>}
             {f.estado !== 'todos' && <button type="button" className={BTN.ghost} onClick={() => set('estado', 'todos')}>Estado: {f.estado === 'abiertas' ? 'Abiertas' : f.estado} ✕</button>}

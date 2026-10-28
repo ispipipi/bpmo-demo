@@ -60,7 +60,7 @@ export default function MapaPage() {
         <div>
           <h1 className="text-h1">Mapa de procesos</h1>
           <div className="mt-1 flex flex-wrap items-center gap-3">
-            <p className="text-[15px] font-bold">{includedTotal} de {CATALOG.length} procesos operables en este demo</p>
+            <p className="text-[17px] font-bold">{includedTotal} de {CATALOG.length} procesos operables en este demo</p>
             <SegmentBar segments={segments} label={`${includedTotal} de ${CATALOG.length} procesos operables`} />
           </div>
         </div>
@@ -107,24 +107,24 @@ export default function MapaPage() {
             <header className="flex flex-wrap items-center gap-3 px-5 py-3.5">
               <h2 className="text-overline uppercase text-ink-soft">{sec.category}</h2>
               <StatusChip tone={sec.status.tone} label={sec.status.label} />
-              <span className="ml-auto text-[13px] text-ink-soft">{sec.includedCount} de {sec.total} incluidos</span>
+              <span className="ml-auto text-[15px] text-ink-soft">{sec.includedCount} de {sec.total} incluidos</span>
             </header>
             <div className="overflow-x-auto">
               <div>
-                <div className={`${COLS} hidden h-9 bg-sunken px-5 text-[12px] font-bold text-ink-soft min-[900px]:grid`}>
+                <div className={`${COLS} hidden h-9 bg-sunken px-5 text-[14px] font-bold text-ink-soft min-[900px]:grid`}>
                   <span>N°</span><span>Proceso</span><span>Periodicidad / gatillo</span><span>Responsable</span><span>Evidencia requerida</span><span>Estado</span>
                 </div>
                 {sec.rows.map((r) => {
                   const cells = (
                     <>
-                      <span className={`font-mono text-[13px] ${r.included ? 'font-semibold' : 'text-ink-faint'}`}>{r.def.id}</span>
+                      <span className={`font-mono text-[15px] ${r.included ? 'font-semibold' : 'text-ink-faint'}`}>{r.def.id}</span>
                       <span>
-                        <span className={`block text-[13.5px] ${r.included ? 'font-bold' : 'text-ink-soft'}`}>{r.def.name}</span>
-                        {!r.included && <span className="mt-0.5 block text-[12.5px] text-ink-soft">{NOT_INCLUDED_TEXT}</span>}
+                        <span className={`block text-[15px] ${r.included ? 'font-bold' : 'text-ink-soft'}`}>{r.def.name}</span>
+                        {!r.included && <span className="mt-0.5 block text-[14.5px] text-ink-soft">{NOT_INCLUDED_TEXT}</span>}
                       </span>
-                      <span className="text-[13px] text-ink-soft">{r.def.trigger}</span>
+                      <span className="text-[15px] text-ink-soft">{r.def.trigger}</span>
                       <span><ResponsibleChip responsible={r.def.responsible} /></span>
-                      <span className="text-[13px] text-ink-soft">{r.def.evidence}</span>
+                      <span className="text-[15px] text-ink-soft">{r.def.evidence}</span>
                       <span className="flex items-center justify-between gap-2">
                         {r.included ? <StatusChip tone={r.status.tone} label={r.status.label} /> : <StatusChip tone="na" label="No incluido" />}
                         {r.included && <IconChevronRight size={16} className="flex-none text-brand" />}
@@ -146,7 +146,7 @@ export default function MapaPage() {
           </section>
         ))
       )}
-      <p className="text-[12.5px] text-ink-soft">{SIMULATED_LEGEND}. El catálogo de 22 procesos proviene del documento de H2D y no se edita.</p>
+      <p className="text-[14.5px] text-ink-soft">{SIMULATED_LEGEND}. El catálogo de 22 procesos proviene del documento de H2D y no se edita.</p>
     </div>
   )
 }

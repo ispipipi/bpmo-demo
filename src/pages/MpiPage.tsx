@@ -165,20 +165,20 @@ function CertificationTab() {
               ))}
               <li className="ml-3 text-ink-soft">Vencimiento <span className="font-mono font-semibold text-ink">{expiry ? formatDate(expiry) : '—'}</span></li>
             </ol>
-            {mpi.expedienteRef && <p className="mt-2 text-[13px] text-ink-soft">Expediente: <span className="font-mono">{mpi.expedienteRef}</span>{mpi.requestedAt && <> · presentado el <span className="font-mono">{formatDate(mpi.requestedAt)}</span></>}</p>}
-            {mpi.constanciaRef && <p className="text-[13px] text-ink-soft">Constancia: <span className="font-mono">{mpi.constanciaRef}</span>{mpi.constanciaAt && <> · <span className="font-mono">{formatDate(mpi.constanciaAt)}</span></>}</p>}
+            {mpi.expedienteRef && <p className="mt-2 text-[15px] text-ink-soft">Expediente: <span className="font-mono">{mpi.expedienteRef}</span>{mpi.requestedAt && <> · presentado el <span className="font-mono">{formatDate(mpi.requestedAt)}</span></>}</p>}
+            {mpi.constanciaRef && <p className="text-[15px] text-ink-soft">Constancia: <span className="font-mono">{mpi.constanciaRef}</span>{mpi.constanciaAt && <> · <span className="font-mono">{formatDate(mpi.constanciaAt)}</span></>}</p>}
           </div>
           <div className="min-w-[240px] max-w-[340px] flex-1">
             <div className="flex items-baseline justify-between"><span className="text-dense text-ink-soft">Ítems que cumplen</span><span className="text-kpi">{pct === null ? '—' : `${pct} %`}</span></div>
             <Meter value={pct ?? 0} tone={tone} label="Ítems que cumplen" />
-            <p className="mt-2 text-[12.5px] text-ink-soft">{counts('Cumple')} de {applicable.length} · "No aplica" no cuenta en el denominador</p>
+            <p className="mt-2 text-[14.5px] text-ink-soft">{counts('Cumple')} de {applicable.length} · "No aplica" no cuenta en el denominador</p>
           </div>
           {writable && (
             <div className="flex min-w-[240px] flex-col gap-2">
               {mpi.status === 'En preparación' ? (
                 <button type="button" className={BTN.primary} onClick={() => setDialog('requested')}>Registrar solicitud presentada</button>
               ) : (
-                <p className="rounded-ctl bg-ok-soft px-3 py-2 text-[13px] font-semibold text-ok-ink">Solicitud presentada</p>
+                <p className="rounded-ctl bg-ok-soft px-3 py-2 text-[15px] font-semibold text-ok-ink">Solicitud presentada</p>
               )}
               {blockers.length === 0 ? (
                 <button type="button" className={BTN.primary} onClick={() => setDialog('constancia')}>Registrar constancia vigente</button>
@@ -218,14 +218,14 @@ function CertificationTab() {
                 {items.map((item) => (
                   <div key={item.id} className="border-t border-line-soft">
                     <div className="grid grid-cols-1 items-center gap-x-4 gap-y-2 px-5 py-3 min-[900px]:grid-cols-[72px_1fr_180px_150px]">
-                      <span className="font-mono text-[13px] font-semibold">{item.id}</span>
+                      <span className="font-mono text-[15px] font-semibold">{item.id}</span>
                       <div className="min-w-0">
-                        <div className="text-[14px]">{item.description}</div>
-                        <div className="mt-0.5 font-mono text-[12px] text-ink-soft">
+                        <div className="text-[16px]">{item.description}</div>
+                        <div className="mt-0.5 font-mono text-[14px] text-ink-soft">
                           {item.state === 'No aplica' ? `Justificación: ${item.justification ?? '—'}` : item.evidenceRef ?? 'Sin evidencia'} {item.date ? formatDate(item.date) : '—'}
                         </div>
                       </div>
-                      <span className="w-fit rounded-[6px] bg-surface px-2 py-0.5 text-[12px] font-semibold text-ink-soft shadow-[inset_0_0_0_1px_var(--line)]">{item.owner}</span>
+                      <span className="w-fit rounded-[6px] bg-surface px-2 py-0.5 text-[14px] font-semibold text-ink-soft shadow-[inset_0_0_0_1px_var(--line)]">{item.owner}</span>
                       <div className="flex items-center gap-2">
                         {writable ? (
                           <select aria-label={`Estado de ${item.id}`} value={editing?.itemId === item.id ? editing.state : item.state} onChange={(e) => choose(item, e.target.value as MpiItemState)} className={`h-7 cursor-pointer rounded-full px-2.5 text-label outline-none ${ITEM_CLASS[item.state]}`}>
@@ -239,7 +239,7 @@ function CertificationTab() {
                     </div>
                     {editing?.itemId === item.id && (
                       <div className="mx-5 mb-3 rounded-ctl bg-brand-wash p-4 shadow-[inset_0_0_0_1px_var(--brand-soft)]">
-                        <p className="text-[12.5px] font-bold text-brand-deep">{editing.state === 'Cumple' ? 'Cambiar a "Cumple" · referencia de evidencia obligatoria' : 'Cambiar a "No aplica" · justificación obligatoria'}</p>
+                        <p className="text-[14.5px] font-bold text-brand-deep">{editing.state === 'Cumple' ? 'Cambiar a "Cumple" · referencia de evidencia obligatoria' : 'Cambiar a "No aplica" · justificación obligatoria'}</p>
                         <div className="mt-3 grid grid-cols-1 gap-3 min-[900px]:grid-cols-[1fr_160px_auto]">
                           <Field id={`edit-ref-${item.id}`} label={editing.state === 'Cumple' ? 'Referencia de evidencia' : 'Justificación'} error={editErrors.evidenceRef ?? editErrors.justification}>
                             {(a) => <input {...a} value={editRef} autoFocus onChange={(e) => setEditRef(e.target.value)} className={`${inputClass(!!(editErrors.evidenceRef ?? editErrors.justification))} h-10 font-mono`} />}
@@ -281,10 +281,10 @@ function AutodenunciaTab() {
   const [creating, setCreating] = useState(false)
   const findings = [...state.data.findings].sort((a, b) => Number(a.stage === 'Cerrado') - Number(b.stage === 'Cerrado') || b.id.localeCompare(a.id))
   const columns: Column<Finding>[] = [
-    { key: 'id', header: 'ID', render: (f) => <Link to={`/mpi/hallazgo/${f.id}`} className="font-mono text-[13px] font-semibold text-ink hover:text-brand">{f.id}</Link> },
+    { key: 'id', header: 'ID', render: (f) => <Link to={`/mpi/hallazgo/${f.id}`} className="font-mono text-[15px] font-semibold text-ink hover:text-brand">{f.id}</Link> },
     { key: 'desc', header: 'Hallazgo', render: (f) => <span className="block max-w-[420px] truncate" title={f.description}>{f.description}</span> },
     { key: 'origin', header: 'Origen', render: (f) => <span className="text-ink-soft">{f.origin}{f.originRef && f.origin !== 'Evento E8' ? ` · ${f.originRef}` : ''}</span> },
-    { key: 'detected', header: 'Detectado', align: 'right', render: (f) => <span className="font-mono text-[13px]">{formatDate(f.detectedAt)}</span> },
+    { key: 'detected', header: 'Detectado', align: 'right', render: (f) => <span className="font-mono text-[15px]">{formatDate(f.detectedAt)}</span> },
     { key: 'severity', header: 'Gravedad', render: (f) => <SeverityLabel f={f} /> },
     { key: 'stage', header: 'Etapa', render: (f) => <span className="inline-flex h-6 items-center whitespace-nowrap rounded-full bg-brand-soft px-2.5 text-label text-brand-deep">{stageIndex(f.stage) + 1}/{FINDING_STAGES.length} · {f.stage}</span> },
   ]

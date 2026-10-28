@@ -16,7 +16,7 @@ function LogDialog({ onClose }: { onClose: () => void }) {
         <p className="py-6 text-center text-dense">Aún no hay acciones registradas. Cada acción que hagas quedará aquí con su fecha de demo.</p>
       ) : (
         <div className="max-h-[55vh] overflow-auto rounded-ctl border border-line">
-          <table className="w-full text-left text-[13px]">
+          <table className="w-full text-left text-[15px]">
             <thead className="sticky top-0 bg-sunken text-label text-ink-soft">
               <tr>
                 <th className="w-[100px] px-3 py-2">Fecha demo</th>
@@ -92,7 +92,7 @@ export function DemoControl() {
         <div ref={panel} role="dialog" aria-label="Control de demo" className="absolute right-0 top-12 z-30 w-[320px] animate-rise rounded-card bg-surface p-4 shadow-float">
           <div className="text-overline text-ink-soft">CONTROLES DE DEMO</div>
 
-          <div className="mt-3 rounded-ctl bg-sunken p-3 text-[12.5px]">
+          <div className="mt-3 rounded-ctl bg-sunken p-3 text-[14.5px]">
             <div className="flex items-center gap-1.5 font-semibold">
               <StateShape tone={state.connectionError ? 'crit' : 'ok'} size={8} />
               {state.connectionError ? 'Ley de Datos: error de conexión (simulado)' : 'Ley de Datos: Conectado (simulado)'}
@@ -101,7 +101,7 @@ export function DemoControl() {
           </div>
 
           {storage !== 'ok' && (
-            <div role="alert" className="mt-3 rounded-ctl bg-surface p-3 text-[12.5px] shadow-[inset_0_0_0_1.5px_var(--crit)]">
+            <div role="alert" className="mt-3 rounded-ctl bg-surface p-3 text-[14.5px] shadow-[inset_0_0_0_1.5px_var(--crit)]">
               <div className="flex items-start gap-2 font-semibold text-crit-ink">
                 <StateShape tone="crit" size={9} />
                 <span>{storage === 'unavailable' ? 'El navegador no permite guardar datos.' : 'No se pudo guardar el estado.'}</span>
@@ -130,7 +130,7 @@ export function DemoControl() {
             <button type="button" className={BTN.secondary} onClick={() => { setOpen(false); setDialog('log') }}>Ver bitácora</button>
             <button type="button" className={BTN.danger} onClick={() => { setOpen(false); setDialog('reset') }}>Reiniciar demo</button>
           </div>
-          <p className="mt-3 flex gap-1.5 text-[12px] text-ink-soft">
+          <p className="mt-3 flex gap-1.5 text-[14px] text-ink-soft">
             <IconInfo size={14} className="mt-px flex-none" />
             Estos controles son del demo y no existirían en la plataforma real.
           </p>

@@ -67,7 +67,7 @@ export default function VendorsPage() {
   }
 
   const columns: Column<(typeof rows)[number]>[] = [
-    { key: 'name', header: 'Proveedor', render: ({ v }) => <><div className="font-bold">{v.name}</div><div className="text-[12px] text-ink-soft">{v.category} · {v.area}</div></>, sort: (a, b) => a.v.name.localeCompare(b.v.name) },
+    { key: 'name', header: 'Proveedor', render: ({ v }) => <><div className="font-bold">{v.name}</div><div className="text-[14px] text-ink-soft">{v.category} · {v.area}</div></>, sort: (a, b) => a.v.name.localeCompare(b.v.name) },
     { key: 'country', header: 'País', render: ({ v }) => v.country },
     { key: 'intl', header: 'T. intl.', render: ({ v }) => <span className="font-bold">{v.international ? 'Sí' : 'No'}</span> },
     { key: 'dpa', header: 'DPA', render: ({ v }) => <span className={v.dpa === 'Vigente' ? '' : 'font-bold text-crit-ink'}>{v.dpa}</span> },
@@ -77,7 +77,7 @@ export default function VendorsPage() {
       align: 'right',
       render: ({ v }) => {
         const due = vendorDue(v)
-        return due ? <span className={`font-mono text-[13px] ${due < state.clock ? 'font-bold text-crit-ink' : ''}`}>{formatDate(due)}</span> : <span className="text-ink-faint">—</span>
+        return due ? <span className={`font-mono text-[15px] ${due < state.clock ? 'font-bold text-crit-ink' : ''}`}>{formatDate(due)}</span> : <span className="text-ink-faint">—</span>
       },
       sort: (a, b) => (vendorDue(a.v) ?? '9999').localeCompare(vendorDue(b.v) ?? '9999'),
     },
@@ -111,7 +111,7 @@ export default function VendorsPage() {
           <label className="relative">
             <span className="sr-only">Buscar proveedor</span>
             <IconSearch size={16} className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-ink-faint" />
-            <input type="search" value={q} onChange={(e) => setQ(e.target.value)} placeholder="Buscar proveedor…" className="h-9 w-[240px] max-w-full rounded-ctl bg-surface pl-9 pr-3 text-[13px] shadow-[inset_0_0_0_1.5px_var(--line)] outline-none focus:shadow-[inset_0_0_0_1.5px_var(--brand-mid)]" />
+            <input type="search" value={q} onChange={(e) => setQ(e.target.value)} placeholder="Buscar proveedor…" className="h-9 w-[240px] max-w-full rounded-ctl bg-surface pl-9 pr-3 text-[15px] shadow-[inset_0_0_0_1.5px_var(--line)] outline-none focus:shadow-[inset_0_0_0_1.5px_var(--brand-mid)]" />
           </label>
           <FilterSelect label="País" value={country} onChange={setCountry} options={[{ value: 'todos', label: 'Todos' }, ...countries.map((c) => ({ value: c, label: c }))]} />
           <FilterSelect label="Transf. intl." value={intl} onChange={setIntl} options={[{ value: 'todos', label: 'Todas' }, { value: 'si', label: 'Sí' }, { value: 'no', label: 'No' }]} />
@@ -178,7 +178,7 @@ export default function VendorsPage() {
             </div>
           )}
           <div>
-            <h3 className="mb-2 border-b border-line pb-2 text-[13.5px] font-bold text-brand-deep">Historial</h3>
+            <h3 className="mb-2 border-b border-line pb-2 text-[15px] font-bold text-brand-deep">Historial</h3>
             <HistoryList entries={selected.history} formatDate={formatDate} />
           </div>
         </SidePanel>
@@ -239,7 +239,7 @@ export default function VendorsPage() {
             { key: 'international', label: 'Transferencia internacional', kind: 'checkbox' },
           ]}
           validate={(v) => ({ ...validateNewVendor({ name: v.name ?? '', category: v.category ?? '', area: v.area ?? '', country: v.country ?? '', international: v.international === 'true' }) })}
-          extra={(v) => (forcesInternational(v.country ?? '') ? <p className="rounded-ctl bg-warn-soft px-3 py-2 text-[13px] text-warn-ink">Un país distinto de Chile implica transferencia internacional: se registrará como "Sí" y exigirá mecanismo de garantía.</p> : null)}
+          extra={(v) => (forcesInternational(v.country ?? '') ? <p className="rounded-ctl bg-warn-soft px-3 py-2 text-[15px] text-warn-ink">Un país distinto de Chile implica transferencia internacional: se registrará como "Sí" y exigirá mecanismo de garantía.</p> : null)}
           confirmLabel="Agregar proveedor"
           onClose={() => setDialog(null)}
           onSubmit={(v) => run({ kind: 'add', input: { name: v.name ?? '', category: v.category ?? '', area: v.area ?? '', country: v.country ?? '', international: v.international === 'true' } }, `Proveedor ${v.name} agregado al catastro.`) && setDialog(null)}

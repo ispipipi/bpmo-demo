@@ -6,13 +6,13 @@ import { StateShape } from './StatusChip'
 
 export const BTN = {
   primary:
-    'inline-flex h-10 items-center justify-center gap-2 whitespace-nowrap rounded-ctl bg-brand px-[18px] text-[13.5px] font-bold text-white transition hover:bg-brand-deep active:translate-y-px',
+    'inline-flex h-10 items-center justify-center gap-2 whitespace-nowrap rounded-ctl bg-brand px-[18px] text-[15px] font-bold text-white transition hover:bg-brand-deep active:translate-y-px',
   secondary:
-    'inline-flex h-10 items-center justify-center gap-2 whitespace-nowrap rounded-ctl bg-surface px-4 text-[13.5px] font-bold shadow-[inset_0_0_0_1.5px_var(--line)] transition hover:bg-sunken active:translate-y-px',
+    'inline-flex h-10 items-center justify-center gap-2 whitespace-nowrap rounded-ctl bg-surface px-4 text-[15px] font-bold shadow-[inset_0_0_0_1.5px_var(--line)] transition hover:bg-sunken active:translate-y-px',
   danger:
-    'inline-flex h-10 items-center justify-center gap-2 whitespace-nowrap rounded-ctl bg-surface px-4 text-[13.5px] font-bold text-crit-ink shadow-[inset_0_0_0_1.5px_var(--crit)] transition hover:bg-crit-soft active:translate-y-px',
+    'inline-flex h-10 items-center justify-center gap-2 whitespace-nowrap rounded-ctl bg-surface px-4 text-[15px] font-bold text-crit-ink shadow-[inset_0_0_0_1.5px_var(--crit)] transition hover:bg-crit-soft active:translate-y-px',
   ghost:
-    'inline-flex h-8 items-center justify-center gap-1.5 whitespace-nowrap rounded-ctl px-2 text-[12.5px] font-bold text-ink-soft transition hover:bg-sunken hover:text-ink',
+    'inline-flex h-8 items-center justify-center gap-1.5 whitespace-nowrap rounded-ctl px-2 text-[14.5px] font-bold text-ink-soft transition hover:bg-sunken hover:text-ink',
 } as const
 
 /* ---------- Estados de interfaz ---------- */
@@ -27,7 +27,7 @@ export function EmptyState({ title, text, action }: { title: string; text: strin
       <div className="mb-3 grid h-12 w-12 place-items-center rounded-ctl bg-sunken text-ink-soft">
         <IconInfo size={22} />
       </div>
-      <h3 className="text-[18px] font-extrabold">{title}</h3>
+      <h3 className="text-[20px] font-extrabold">{title}</h3>
       <p className="mt-1 max-w-md text-dense text-ink-soft">{text}</p>
       {action && <div className="mt-4">{action}</div>}
     </div>
@@ -44,11 +44,11 @@ export function BlockedAction({ label, reasons }: { label: string; reasons: read
         aria-disabled="true"
         aria-describedby={id}
         onClick={(e) => e.preventDefault()}
-        className="inline-flex h-10 cursor-not-allowed items-center whitespace-nowrap rounded-ctl bg-sunken px-4 text-[13.5px] font-bold text-ink-faint"
+        className="inline-flex h-10 cursor-not-allowed items-center whitespace-nowrap rounded-ctl bg-sunken px-4 text-[15px] font-bold text-ink-faint"
       >
         {label}
       </button>
-      <p id={id} className="mt-2 flex items-start gap-1.5 text-[12.5px] text-ink-soft">
+      <p id={id} className="mt-2 flex items-start gap-1.5 text-[14.5px] text-ink-soft">
         <IconInfo size={14} className="mt-0.5 flex-none" />
         <span>{reasons.join(' ')}</span>
       </p>

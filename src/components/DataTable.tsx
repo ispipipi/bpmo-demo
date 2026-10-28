@@ -82,14 +82,14 @@ export function DataTable<T>({
               className={`rounded-card bg-surface p-4 shadow-[inset_0_0_0_1px_var(--line)] ${href || onRowClick ? 'cursor-pointer' : ''} ${isRowSelected?.(row) ? 'bg-brand-soft' : ''}`}
             >
               <div className="flex items-start justify-between gap-3">
-                <div className="min-w-0 text-[14px] font-bold">{titleCol?.render(row)}</div>
+                <div className="min-w-0 text-[16px] font-bold">{titleCol?.render(row)}</div>
                 {badgeCol && <div className="flex-none">{badgeCol.render(row)}</div>}
               </div>
               <dl className="mt-3 grid grid-cols-2 gap-x-4 gap-y-2">
                 {fieldCols.map((c) => (
                   <div key={c.key} className="min-w-0">
-                    <dt className="text-[11.5px] font-bold uppercase tracking-[0.04em] text-ink-soft">{c.header}</dt>
-                    <dd className="whitespace-normal text-[13.5px]">{c.render(row)}</dd>
+                    <dt className="text-[13.5px] font-bold uppercase tracking-[0.04em] text-ink-soft">{c.header}</dt>
+                    <dd className="whitespace-normal text-[15px]">{c.render(row)}</dd>
                   </div>
                 ))}
               </dl>
@@ -99,9 +99,9 @@ export function DataTable<T>({
         })}
       </ul>
       <div className="hidden overflow-x-auto min-[640px]:block">
-        <table className="w-full min-w-[900px] border-collapse text-[13.5px]" aria-label={label}>
+        <table className="w-full min-w-[900px] border-collapse text-[15px]" aria-label={label}>
           <thead>
-            <tr className="h-10 bg-sunken text-[12.5px] font-bold text-ink-soft">
+            <tr className="h-10 bg-sunken text-[14.5px] font-bold text-ink-soft">
               {columns.map((c, i) => (
                 <th
                   key={c.key}
@@ -146,7 +146,7 @@ export function DataTable<T>({
           </tbody>
         </table>
       </div>
-      {footer && <div className="border-t border-line-soft px-5 py-3 text-[12.5px] text-ink-soft">{footer}</div>}
+      {footer && <div className="border-t border-line-soft px-5 py-3 text-[14.5px] text-ink-soft">{footer}</div>}
     </div>
   )
 }

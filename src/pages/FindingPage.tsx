@@ -88,7 +88,7 @@ function PlanEditor({ f, run }: { f: Finding; run: Run }) {
         <ul className="mb-4">
           {f.plan.map((a) => (
             <li key={a.id} className="flex items-center justify-between gap-3 border-t border-line-soft py-2.5 text-dense first:border-t-0">
-              <span><strong className="font-semibold">{a.action}</strong><br /><span className="text-[12.5px] text-ink-soft">{a.owner} · comprometida para el <span className="font-mono">{formatDate(a.dueAt)}</span></span></span>
+              <span><strong className="font-semibold">{a.action}</strong><br /><span className="text-[14.5px] text-ink-soft">{a.owner} · comprometida para el <span className="font-mono">{formatDate(a.dueAt)}</span></span></span>
               <button type="button" className={BTN.ghost} onClick={() => run({ kind: 'planRemove', id: f.id, actionId: a.id }, 'Acción quitada del plan.')}>Quitar</button>
             </li>
           ))}
@@ -134,7 +134,7 @@ function SignoffForm({ title, sub, byLabel, dateLabel, refLabel, byPlaceholder, 
   const e = (k: keyof typeof errors) => (submitted ? errors[k] : undefined)
   return (
     <div>
-      <h3 className="text-[19px] font-extrabold leading-6">{title}</h3>
+      <h3 className="text-[21px] font-extrabold leading-6">{title}</h3>
       <p className="mt-1 text-dense text-ink-soft">{sub}</p>
       <div className="mt-4 grid grid-cols-1 gap-4 min-[900px]:grid-cols-2">
         <Field id="so-by" label={byLabel} required error={e('by')}>{(a) => <input {...a} value={by} placeholder={byPlaceholder} onChange={(ev) => setBy(ev.target.value)} className={`${inputClass(!!e('by'))} h-11`} />}</Field>
@@ -265,7 +265,7 @@ export default function FindingPage() {
               {f.plan.map((a) => (
                 <li key={a.id} className="flex items-center gap-3 border-t border-line-soft py-2.5 text-dense first:border-t-0">
                   <input type="checkbox" id={a.id} checked={a.done} disabled={!edit} onChange={(ev) => run({ kind: 'actionDone', id: f.id, actionId: a.id, done: ev.target.checked }, `Acción ${ev.target.checked ? 'completa' : 'pendiente'}.`)} className="h-4 w-4" />
-                  <label htmlFor={a.id} className="flex-1"><strong className="font-semibold">{a.action}</strong><br /><span className="text-[12.5px] text-ink-soft">{a.owner} · <span className="font-mono">{formatDate(a.dueAt)}</span></span></label>
+                  <label htmlFor={a.id} className="flex-1"><strong className="font-semibold">{a.action}</strong><br /><span className="text-[14.5px] text-ink-soft">{a.owner} · <span className="font-mono">{formatDate(a.dueAt)}</span></span></label>
                 </li>
               ))}
             </ul>
@@ -290,7 +290,7 @@ export default function FindingPage() {
       <header className="rounded-card bg-surface p-5 shadow-card min-[900px]:p-6">
         <div className="flex flex-wrap items-center gap-3">
           <h1 className="font-mono text-[26px] font-semibold leading-8">{f.id}</h1>
-          <span className="text-[15px] font-semibold">{f.description.length > 90 ? `${f.description.slice(0, 90)}…` : f.description}</span>
+          <span className="text-[17px] font-semibold">{f.description.length > 90 ? `${f.description.slice(0, 90)}…` : f.description}</span>
           <SeverityLabel f={f} />
           <span className="ml-auto text-dense text-ink-soft">Origen: {f.origin === 'Evento E8' ? 'evento E8 (simulado)' : f.originRef ? `${f.origin} ${f.originRef}` : f.origin}</span>
         </div>
@@ -337,7 +337,7 @@ export default function FindingPage() {
                 </div>
                 <div className="flex items-center justify-between border-t border-line-soft py-2.5 text-dense">
                   <dt>Aprobación interna{f.approval ? ` · ${f.approval.by}` : ''}</dt>
-                  <dd className="font-mono text-[12.5px]">{f.approval ? formatDate(f.approval.date) : <span className="text-ink-faint">Pendiente</span>}</dd>
+                  <dd className="font-mono text-[14.5px]">{f.approval ? formatDate(f.approval.date) : <span className="text-ink-faint">Pendiente</span>}</dd>
                 </div>
               </dl>
               {f.packageGeneratedAt && <Link to={`/mpi/hallazgo/${f.id}/paquete`} className={`${BTN.secondary} mt-3 hover:text-ink`}>Ver paquete</Link>}

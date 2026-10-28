@@ -48,23 +48,23 @@ function CampaignDialog({ state, initialId, onClose, onRun }: { state: DemoState
       <p className="mb-4">Calcula, con los consentimientos vigentes, cuántos contactos de una lista podrían recibir la comunicación. No envía nada.</p>
       <div className="flex flex-col gap-4">
         <div>
-          <label htmlFor="camp-id" className="block text-[12.5px] font-bold text-ink">Finalidad *</label>
-          <select id="camp-id" value={id} onChange={(e) => { setId(e.target.value); setResult(null) }} className="mt-1.5 h-10 w-full rounded-ctl bg-surface px-3 text-[14px] text-ink shadow-[inset_0_0_0_1.5px_var(--line)]">
+          <label htmlFor="camp-id" className="block text-[14.5px] font-bold text-ink">Finalidad *</label>
+          <select id="camp-id" value={id} onChange={(e) => { setId(e.target.value); setResult(null) }} className="mt-1.5 h-10 w-full rounded-ctl bg-surface px-3 text-[16px] text-ink shadow-[inset_0_0_0_1.5px_var(--line)]">
             <option value="">Elige…</option>
             {state.data.consents.map((c) => <option key={c.id} value={c.id}>{c.purpose} · {formatNumber(c.active)} vigentes</option>)}
           </select>
-          {idError && <p className="mt-1.5 text-[12px] font-semibold text-crit-ink">{idError}</p>}
+          {idError && <p className="mt-1.5 text-[14px] font-semibold text-crit-ink">{idError}</p>}
         </div>
         <div>
-          <label htmlFor="camp-size" className="block text-[12.5px] font-bold text-ink">Tamaño de la lista de contactos *</label>
-          <input id="camp-size" inputMode="numeric" value={size} onChange={(e) => { setSize(e.target.value); setResult(null) }} aria-invalid={sizeError ? true : undefined} className="mt-1.5 h-10 w-full rounded-ctl bg-surface px-3 font-mono text-[14px] text-ink shadow-[inset_0_0_0_1.5px_var(--line)]" />
-          {sizeError && <p className="mt-1.5 text-[12px] font-semibold text-crit-ink">{sizeError}</p>}
+          <label htmlFor="camp-size" className="block text-[14.5px] font-bold text-ink">Tamaño de la lista de contactos *</label>
+          <input id="camp-size" inputMode="numeric" value={size} onChange={(e) => { setSize(e.target.value); setResult(null) }} aria-invalid={sizeError ? true : undefined} className="mt-1.5 h-10 w-full rounded-ctl bg-surface px-3 font-mono text-[16px] text-ink shadow-[inset_0_0_0_1.5px_var(--line)]" />
+          {sizeError && <p className="mt-1.5 text-[14px] font-semibold text-crit-ink">{sizeError}</p>}
         </div>
         {result && (
           <div role="status" className="rounded-ctl bg-brand-wash p-4">
-            <p className="text-[12.5px] font-bold text-brand-deep">Validar campaña · lista de {formatNumber(result.size)} contactos</p>
+            <p className="text-[14.5px] font-bold text-brand-deep">Validar campaña · lista de {formatNumber(result.size)} contactos</p>
             <p className="mt-1 text-body"><strong className="text-ok-ink">{formatNumber(result.enabled)}</strong> contactos habilitados, <strong className="text-crit-ink">{formatNumber(result.without)}</strong> sin consentimiento</p>
-            <p className="mt-1 text-[12.5px] text-ink-soft">Resultado simulado. No se envía nada.</p>
+            <p className="mt-1 text-[14.5px] text-ink-soft">Resultado simulado. No se envía nada.</p>
           </div>
         )}
       </div>
@@ -109,11 +109,11 @@ export default function ConsentsPage() {
   }
 
   const columns: Column<(typeof rows)[number]>[] = [
-    { key: 'purpose', header: 'Finalidad', render: ({ c }) => <><div className="font-bold">{c.purpose}</div><div className="font-mono text-[11.5px] text-ink-soft">{c.id}</div></>, sort: (a, b) => a.c.purpose.localeCompare(b.c.purpose) },
+    { key: 'purpose', header: 'Finalidad', render: ({ c }) => <><div className="font-bold">{c.purpose}</div><div className="font-mono text-[13.5px] text-ink-soft">{c.id}</div></>, sort: (a, b) => a.c.purpose.localeCompare(b.c.purpose) },
     { key: 'channel', header: 'Canal', render: ({ c }) => <span className="text-ink-soft">{c.channel}</span> },
     { key: 'active', header: 'Vigentes', align: 'right', render: ({ c }) => <span className="font-bold">{formatNumber(c.active)}</span>, sort: (a, b) => a.c.active - b.c.active },
     { key: 'revoked', header: 'Revocados', align: 'right', render: ({ c }) => <span className="text-ink-soft">{formatNumber(c.revoked)}</span>, sort: (a, b) => a.c.revoked - b.c.revoked },
-    { key: 'validated', header: 'Últ. validación', align: 'right', render: ({ c, status: s }) => <span className={`font-mono text-[13px] ${s === 'Por validar' ? 'font-bold text-warn-ink' : ''}`}>{formatDate(c.lastValidatedAt)}</span>, sort: (a, b) => a.c.lastValidatedAt.localeCompare(b.c.lastValidatedAt) },
+    { key: 'validated', header: 'Últ. validación', align: 'right', render: ({ c, status: s }) => <span className={`font-mono text-[15px] ${s === 'Por validar' ? 'font-bold text-warn-ink' : ''}`}>{formatDate(c.lastValidatedAt)}</span>, sort: (a, b) => a.c.lastValidatedAt.localeCompare(b.c.lastValidatedAt) },
     { key: 'status', header: 'Estado', width: '170px', render: ({ status: s }) => <StatusChip tone={STATUS_TONE[s]} label={s} /> },
   ]
 
@@ -133,7 +133,7 @@ export default function ConsentsPage() {
           <label className="relative">
             <span className="sr-only">Buscar finalidad</span>
             <IconSearch size={16} className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-ink-faint" />
-            <input type="search" value={q} onChange={(e) => setQ(e.target.value)} placeholder="Buscar finalidad…" className="h-9 w-[240px] max-w-full rounded-ctl bg-surface pl-9 pr-3 text-[13px] shadow-[inset_0_0_0_1.5px_var(--line)] outline-none focus:shadow-[inset_0_0_0_1.5px_var(--brand-mid)]" />
+            <input type="search" value={q} onChange={(e) => setQ(e.target.value)} placeholder="Buscar finalidad…" className="h-9 w-[240px] max-w-full rounded-ctl bg-surface pl-9 pr-3 text-[15px] shadow-[inset_0_0_0_1.5px_var(--line)] outline-none focus:shadow-[inset_0_0_0_1.5px_var(--brand-mid)]" />
           </label>
           <FilterSelect label="Canal" value={channel} onChange={setChannel} options={[{ value: 'todos', label: 'Todos' }, ...channels.map((c) => ({ value: c, label: c }))]} />
           <ToneSegmented
@@ -169,8 +169,8 @@ export default function ConsentsPage() {
           onClose={() => select(null)}
         >
           <div className="grid grid-cols-2 gap-3">
-            <div className="rounded-ctl bg-sunken p-3"><div className="text-[12.5px] text-ink-soft">Vigentes</div><div className="text-[24px] font-extrabold">{formatNumber(selected.active)}</div></div>
-            <div className="rounded-ctl bg-sunken p-3"><div className="text-[12.5px] text-ink-soft">Revocados</div><div className="text-[24px] font-extrabold">{formatNumber(selected.revoked)}</div></div>
+            <div className="rounded-ctl bg-sunken p-3"><div className="text-[14.5px] text-ink-soft">Vigentes</div><div className="text-[24px] font-extrabold">{formatNumber(selected.active)}</div></div>
+            <div className="rounded-ctl bg-sunken p-3"><div className="text-[14.5px] text-ink-soft">Revocados</div><div className="text-[24px] font-extrabold">{formatNumber(selected.revoked)}</div></div>
           </div>
           <p className="text-dense text-ink-soft">
             Última validación <span className="font-mono font-semibold text-ink">{formatDate(selected.lastValidatedAt)}</span>
@@ -185,14 +185,14 @@ export default function ConsentsPage() {
           )}
           <div role="tablist" className="flex gap-5 border-b border-line">
             {([['mov', 'Últimos movimientos'], ['hist', 'Historial']] as const).map(([k, l]) => (
-              <button key={k} role="tab" type="button" aria-selected={tab === k} onClick={() => setTab(k)} className={`-mb-px h-10 text-[13.5px] font-bold ${tab === k ? 'text-brand-deep' : 'text-ink-soft'}`} style={tab === k ? { boxShadow: 'inset 0 -2px 0 var(--brand)' } : undefined}>{l}</button>
+              <button key={k} role="tab" type="button" aria-selected={tab === k} onClick={() => setTab(k)} className={`-mb-px h-10 text-[15px] font-bold ${tab === k ? 'text-brand-deep' : 'text-ink-soft'}`} style={tab === k ? { boxShadow: 'inset 0 -2px 0 var(--brand)' } : undefined}>{l}</button>
             ))}
           </div>
           {tab === 'mov' ? (
             <ul className="flex flex-col gap-3">
               {movements(selected).map((m) => (
-                <li key={m.id} className="flex gap-3 text-[13px]">
-                  <span className={`grid h-6 w-6 flex-none place-items-center rounded-[6px] text-[14px] font-bold ${m.kind === 'Alta' ? 'bg-ok-soft text-ok-ink' : 'bg-crit-soft text-crit-ink'}`} aria-hidden="true">{m.kind === 'Alta' ? '+' : '−'}</span>
+                <li key={m.id} className="flex gap-3 text-[15px]">
+                  <span className={`grid h-6 w-6 flex-none place-items-center rounded-[6px] text-[16px] font-bold ${m.kind === 'Alta' ? 'bg-ok-soft text-ok-ink' : 'bg-crit-soft text-crit-ink'}`} aria-hidden="true">{m.kind === 'Alta' ? '+' : '−'}</span>
                   <span>
                     <span className="font-semibold">{m.kind === 'Alta' ? `Alta · ${m.holder}` : m.note}</span><br />
                     <span className="font-mono text-ink-soft">{formatDate(m.date)}</span>

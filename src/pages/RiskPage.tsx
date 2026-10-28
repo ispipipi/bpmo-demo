@@ -24,14 +24,14 @@ const CHANNEL_LABEL = { RAT: 'Crear solicitud RAT', Consentimientos: 'Consentimi
 function YesNo({ n, text, value, onChange, disabled }: { n: number; text: string; value: Answer; onChange: (v: boolean) => void; disabled: boolean }) {
   return (
     <div className="flex items-center gap-3 border-b border-line-soft py-3 last:border-b-0">
-      <span className="w-4 flex-none text-[12px] text-ink-soft">{n}</span>
+      <span className="w-4 flex-none text-[14px] text-ink-soft">{n}</span>
       <p id={`q-${n}`} className="flex-1 text-dense font-semibold">{text}</p>
       {disabled ? (
-        <span aria-labelledby={`q-${n}`} className="flex-none rounded-ctl bg-sunken px-3 py-2 text-[13.5px] font-bold">{value === null ? '—' : value ? 'Sí' : 'No'}</span>
+        <span aria-labelledby={`q-${n}`} className="flex-none rounded-ctl bg-sunken px-3 py-2 text-[15px] font-bold">{value === null ? '—' : value ? 'Sí' : 'No'}</span>
       ) : (
         <div role="group" aria-labelledby={`q-${n}`} className="flex flex-none rounded-ctl bg-sunken p-0.5">
           {([true, false] as const).map((v) => (
-            <button key={String(v)} type="button" aria-pressed={value === v} onClick={() => onChange(v)} className={`h-10 w-12 rounded-[8px] text-[13.5px] font-bold ${value === v ? 'bg-surface shadow-card' : 'text-ink-soft'}`}>
+            <button key={String(v)} type="button" aria-pressed={value === v} onClick={() => onChange(v)} className={`h-10 w-12 rounded-[8px] text-[15px] font-bold ${value === v ? 'bg-surface shadow-card' : 'text-ink-soft'}`}>
               {v ? 'Sí' : 'No'}
             </button>
           ))}
@@ -92,10 +92,10 @@ export default function RiskPage() {
   }
 
   const columns: Column<(typeof rows)[number]>[] = [
-    { key: 'name', header: 'Proyecto', render: ({ p }) => <><div className="font-bold">{p.name}</div><div className="text-[12px] text-ink-soft"><span className="font-mono">{p.id}</span> · {p.lead}</div></> },
+    { key: 'name', header: 'Proyecto', render: ({ p }) => <><div className="font-bold">{p.name}</div><div className="text-[14px] text-ink-soft"><span className="font-mono">{p.id}</span> · {p.lead}</div></> },
     { key: 'risk', header: 'Riesgo', render: ({ view }) => <StatusChip tone={RISK_TONE[view.risk]} label={view.risk} /> },
     { key: 'result', header: 'Resultado', render: ({ view }) => (view.screening ? <span className={view.screening.requiresEipd ? 'font-bold text-crit-ink' : ''}>{view.screening.requiresEipd ? 'Requiere EIPD' : 'No requiere EIPD'}</span> : <span className="text-ink-faint">—</span>) },
-    { key: 'signed', header: 'Checklist firmado', align: 'right', render: ({ p }) => (p.checklistSignedAt ? <span className="font-mono text-[13px]">{formatDate(p.checklistSignedAt)}</span> : p.evaluatedAt ? <span className="font-mono text-[13px] font-semibold text-warn-ink">Pendiente</span> : <span className="text-ink-faint">—</span>) },
+    { key: 'signed', header: 'Checklist firmado', align: 'right', render: ({ p }) => (p.checklistSignedAt ? <span className="font-mono text-[15px]">{formatDate(p.checklistSignedAt)}</span> : p.evaluatedAt ? <span className="font-mono text-[15px] font-semibold text-warn-ink">Pendiente</span> : <span className="text-ink-faint">—</span>) },
   ]
 
   return (
@@ -130,38 +130,38 @@ export default function RiskPage() {
           {panel.kind === 'new' && (
             <div className="grid gap-3">
               <div>
-                <label htmlFor="pry-name" className="block text-[12.5px] font-bold">Nombre del proyecto *</label>
-                <input id="pry-name" value={name} onChange={(e) => setName(e.target.value)} aria-invalid={submitted && errors.name ? true : undefined} aria-describedby={submitted && errors.name ? 'pry-name-error' : undefined} className="mt-1.5 h-10 w-full rounded-ctl bg-surface px-3 text-[14px] shadow-[inset_0_0_0_1.5px_var(--line)]" />
-                {submitted && errors.name && <p id="pry-name-error" className="mt-1.5 text-[12px] font-semibold text-crit-ink">{errors.name}</p>}
+                <label htmlFor="pry-name" className="block text-[14.5px] font-bold">Nombre del proyecto *</label>
+                <input id="pry-name" value={name} onChange={(e) => setName(e.target.value)} aria-invalid={submitted && errors.name ? true : undefined} aria-describedby={submitted && errors.name ? 'pry-name-error' : undefined} className="mt-1.5 h-10 w-full rounded-ctl bg-surface px-3 text-[16px] shadow-[inset_0_0_0_1.5px_var(--line)]" />
+                {submitted && errors.name && <p id="pry-name-error" className="mt-1.5 text-[14px] font-semibold text-crit-ink">{errors.name}</p>}
               </div>
               <div>
-                <label htmlFor="pry-lead" className="block text-[12.5px] font-bold">Jefe de proyecto *</label>
-                <input id="pry-lead" value={lead} onChange={(e) => setLead(e.target.value)} aria-invalid={submitted && errors.lead ? true : undefined} aria-describedby={submitted && errors.lead ? 'pry-lead-error' : undefined} className="mt-1.5 h-10 w-full rounded-ctl bg-surface px-3 text-[14px] shadow-[inset_0_0_0_1.5px_var(--line)]" />
-                {submitted && errors.lead && <p id="pry-lead-error" className="mt-1.5 text-[12px] font-semibold text-crit-ink">{errors.lead}</p>}
+                <label htmlFor="pry-lead" className="block text-[14.5px] font-bold">Jefe de proyecto *</label>
+                <input id="pry-lead" value={lead} onChange={(e) => setLead(e.target.value)} aria-invalid={submitted && errors.lead ? true : undefined} aria-describedby={submitted && errors.lead ? 'pry-lead-error' : undefined} className="mt-1.5 h-10 w-full rounded-ctl bg-surface px-3 text-[16px] shadow-[inset_0_0_0_1.5px_var(--line)]" />
+                {submitted && errors.lead && <p id="pry-lead-error" className="mt-1.5 text-[14px] font-semibold text-crit-ink">{errors.lead}</p>}
               </div>
             </div>
           )}
 
           <div>
             {QUESTIONS.map((t, i) => <YesNo key={i} n={i + 1} text={t} value={answers[i] ?? null} disabled={!writable} onChange={(v) => setAnswer(i, v)} />)}
-            {submitted && errors.answers && <p role="alert" className="mt-2 flex items-center gap-1.5 text-[12px] font-semibold text-crit-ink"><StateShape tone="crit" size={9} /> {errors.answers}</p>}
+            {submitted && errors.answers && <p role="alert" className="mt-2 flex items-center gap-1.5 text-[14px] font-semibold text-crit-ink"><StateShape tone="crit" size={9} /> {errors.answers}</p>}
           </div>
 
           <div className={`rounded-card p-4 ${live?.risk === 'Alto' ? 'shadow-[inset_0_0_0_1.5px_var(--crit)]' : 'bg-sunken'}`} aria-live="polite">
             <div className="flex flex-wrap items-center gap-3">
               <span className="text-overline text-ink-soft">RESULTADO</span>
               {live ? <StatusChip tone={RISK_TONE[live.risk]} label={`Riesgo ${live.risk}`} /> : null}
-              {live && <span className="text-[12.5px] text-ink-soft">{yesCount(answers)} respuestas "Sí"</span>}
+              {live && <span className="text-[14.5px] text-ink-soft">{yesCount(answers)} respuestas "Sí"</span>}
             </div>
             {live ? (
               <>
-                <p className={`mt-2 text-[20px] font-extrabold ${live.requiresEipd ? 'text-crit-ink' : ''}`}>{live.requiresEipd ? 'Requiere EIPD' : 'No requiere EIPD'}</p>
-                {live.requiresEipd && <p className="mt-2 flex items-start gap-2 rounded-ctl bg-sunken px-3 py-2 text-[13px] text-ink-soft"><IconLock size={14} className="mt-0.5 flex-none" /> La ejecución de la EIPD (proceso 14) no está incluida en este demo.</p>}
+                <p className={`mt-2 text-[22px] font-extrabold ${live.requiresEipd ? 'text-crit-ink' : ''}`}>{live.requiresEipd ? 'Requiere EIPD' : 'No requiere EIPD'}</p>
+                {live.requiresEipd && <p className="mt-2 flex items-start gap-2 rounded-ctl bg-sunken px-3 py-2 text-[15px] text-ink-soft"><IconLock size={14} className="mt-0.5 flex-none" /> La ejecución de la EIPD (proceso 14) no está incluida en este demo.</p>}
                 {live.channels.length > 0 && (
                   <div className="mt-3">
-                    <div className="mb-1.5 text-[12.5px] font-bold">Canales habilitados</div>
+                    <div className="mb-1.5 text-[14.5px] font-bold">Canales habilitados</div>
                     <div className="flex flex-wrap gap-2">
-                      {live.channels.map((c) => <Link key={c} to={CHANNEL_LINK[c]} className="inline-flex h-8 items-center rounded-full bg-surface px-3 text-[12.5px] font-bold shadow-[inset_0_0_0_1.5px_var(--line)] hover:bg-sunken">{CHANNEL_LABEL[c]} ›</Link>)}
+                      {live.channels.map((c) => <Link key={c} to={CHANNEL_LINK[c]} className="inline-flex h-8 items-center rounded-full bg-surface px-3 text-[14.5px] font-bold shadow-[inset_0_0_0_1.5px_var(--line)] hover:bg-sunken">{CHANNEL_LABEL[c]} ›</Link>)}
                     </div>
                   </div>
                 )}
@@ -185,7 +185,7 @@ export default function RiskPage() {
 
           {project && (
             <div>
-              <h3 className="mb-2 border-b border-line pb-2 text-[13.5px] font-bold text-brand-deep">Historial</h3>
+              <h3 className="mb-2 border-b border-line pb-2 text-[15px] font-bold text-brand-deep">Historial</h3>
               <HistoryList entries={project.history} formatDate={formatDate} />
             </div>
           )}

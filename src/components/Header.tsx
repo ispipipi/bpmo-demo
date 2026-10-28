@@ -51,7 +51,7 @@ export function Header({
               navigate('/')
             }}
             aria-label={ROLE_LABEL[r]}
-            className={`whitespace-nowrap rounded-[7px] px-2.5 text-[13px] font-bold min-[640px]:px-3 ${role === r ? 'bg-brand-soft text-brand-deep' : 'text-ink-soft hover:text-ink'}`}
+            className={`whitespace-nowrap rounded-[7px] px-2.5 text-[15px] font-bold min-[640px]:px-3 ${role === r ? 'bg-brand-soft text-brand-deep' : 'text-ink-soft hover:text-ink'}`}
           >
             <span className="min-[640px]:hidden" aria-hidden="true">{r === 'analista' ? 'Analista' : 'Legal'}</span>
             <span className="hidden min-[640px]:inline">{ROLE_LABEL[r]}</span>

@@ -10,8 +10,8 @@ export function DemoClockChip({ clock }: { clock: string }) {
       title="Fecha del reloj de demo"
     >
       <IconCalendar size={16} className="hidden text-ink-soft min-[640px]:block" />
-      <span className="hidden text-[13px] text-ink-soft min-[900px]:inline">Fecha demo</span>
-      <span className="font-mono text-[13px] font-semibold" data-testid="demo-clock">{formatDate(clock)}</span>
+      <span className="hidden text-[15px] text-ink-soft min-[900px]:inline">Fecha demo</span>
+      <span className="font-mono text-[15px] font-semibold" data-testid="demo-clock">{formatDate(clock)}</span>
     </div>
   )
 }
