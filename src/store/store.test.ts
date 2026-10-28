@@ -31,7 +31,7 @@ describe('reducer', () => {
     const next = reducer(s, { type: 'setRole', role: 'legal' })
     expect(next.role).toBe('legal')
     expect(next.data).toBe(s.data)
-    expect(next.log).toEqual([{ at: s.clock, role: 'analista', action: 'Cambió de rol a Legal Sanitaria Valparaíso', entity: 'Sesión' }])
+    expect(next.log).toEqual([{ at: s.clock, role: 'analista', action: 'Cambió de rol a Legal Sanitor', entity: 'Sesión' }])
     expect(reducer(next, { type: 'setRole', role: 'legal' })).toBe(next)
   })
 

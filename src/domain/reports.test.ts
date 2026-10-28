@@ -158,7 +158,7 @@ describe('informe 5: minuta de reporte mensual (AC-25)', () => {
   it('compone semáforo por categoría, ARCOP del mes, alertas críticas y acuerdos vencidos con los datos vigentes', () => {
     const s = after(8)
     const m = minuta(s, { includeAlerts: true })
-    expect(m.title).toBe('Sanitaria Valparaíso · Febrero 2027')
+    expect(m.title).toBe('Sanitor · Febrero 2027')
     expect(m.categories).toHaveLength(6)
     const by = Object.fromEntries(m.categories.map((c) => [c.category, c]))
     expect(by['Atención a titulares y a la autoridad']).toMatchObject({ status: { tone: 'crit', label: 'Vencido' }, summary: 'ARCOP-0003 vencida; MPI 73 % en en preparación; 1 autodenuncia abierta' })

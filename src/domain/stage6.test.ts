@@ -233,7 +233,7 @@ describe('comités (MD §6.9)', () => {
     expect(G.fail(s, { kind: 'agreement', description: '', owner: '', dueAt: '' })).toBeDefined()
     expect(dueAlreadyPassed(d(1), s.clock)).toBe(true)
     expect(dueAlreadyPassed(d(30), s.clock)).toBe(false)
-    const next = G.run(s, { kind: 'agreement', description: 'Revisar el contrato', owner: 'Legal Sanitaria Valparaíso', dueAt: d(1) })
+    const next = G.run(s, { kind: 'agreement', description: 'Revisar el contrato', owner: 'Legal Sanitor', dueAt: d(1) })
     expect(next.data.committee.agreements.at(-1)).toMatchObject({ id: 'ACU-007', status: 'Pendiente', sessionId: 'SES-002' })
     expect(agreementStatus(next.data.committee.agreements.at(-1)!, next.clock)).toBe('Vencido')
   })
@@ -286,9 +286,9 @@ describe('alertas y SLA (MD §6.2)', () => {
   it('Enviar recordatorio (simulado) deja el registro en el historial del caso, no envía nada', () => {
     const s = after(7)
     const alert = allAlerts(s).find((a) => a.id === 'regla:arcop-vencida:ARCOP-0003')!
-    expect(reminderTarget(s, alert)).toEqual({ who: 'Legal de Sanitaria Valparaíso', entity: 'ARCOP-0003' })
+    expect(reminderTarget(s, alert)).toEqual({ who: 'Legal de Sanitor', entity: 'ARCOP-0003' })
     const next = A.run(s, { kind: 'reminder', id: alert.id })
-    expect(next.data.arcop.find((r) => r.id === 'ARCOP-0003')!.history.at(-1)?.text).toBe('Recordatorio simulado enviado a Legal de Sanitaria Valparaíso')
+    expect(next.data.arcop.find((r) => r.id === 'ARCOP-0003')!.history.at(-1)?.text).toBe('Recordatorio simulado enviado a Legal de Sanitor')
     const acuerdo = allAlerts(s).find((a) => a.id === 'regla:acuerdo-vencido:ACU-003')!
     expect(reminderTarget(s, acuerdo)?.who).toBe('Compras')
     const rat = allAlerts(s).find((a) => a.id === 'regla:rat-fuera-de-plazo:RAT-S-001')!

@@ -11,7 +11,7 @@ export default function NoPermissions() {
         </div>
         <h1 className="text-[24px] font-extrabold leading-8">Sin permisos</h1>
         <p className="mt-2 text-body text-ink-soft">
-          Tu rol, Legal Sanitaria Valparaíso, tiene acceso de solo lectura y no puede abrir esta sección. Las alertas y los parámetros los opera el Analista PMO de H2D.
+          Tu rol, Legal Sanitor, tiene acceso de solo lectura y no puede abrir esta sección. Las alertas y los parámetros los opera el Analista PMO de H2D.
         </p>
         <Link to="/" className={`${BTN.primary} mt-6 hover:text-white`}>Volver al resumen</Link>
       </div>

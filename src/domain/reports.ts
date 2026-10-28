@@ -189,7 +189,7 @@ export function minuta(s: DemoState, opts: { includeAlerts: boolean }): Minuta {
   const month = periodRange('mes', s.clock)
   const arcop = s.data.arcop
   return {
-    title: `Sanitaria Valparaíso · ${monthTitle(s.clock)}`,
+    title: `Sanitor · ${monthTitle(s.clock)}`,
     preparedAt: s.clock,
     categories: CATEGORIES.filter((c) => CATALOG.some((p) => p.category === c && isIncluded(p))).map((category) => ({ category, status: categoryStatus(category, s), summary: categorySummary(category, s) })),
     arcop: {

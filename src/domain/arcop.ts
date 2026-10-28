@@ -52,13 +52,13 @@ export function possibleDuplicate(s: DemoState, r: ArcopRequest): ArcopRequest |
 export function responseTemplate(type: ArcopType, holder: string): string {
   const head = `Estimado/a ${holder}:\n\nEn respuesta a su solicitud de ${type.toLowerCase()} de datos personales, le informamos que `
   const body: Record<ArcopType, string> = {
-    Acceso: 'adjuntamos copia de los datos personales que Sanitaria Valparaíso trata sobre usted, junto con las finalidades del tratamiento y los destinatarios.',
+    Acceso: 'adjuntamos copia de los datos personales que Sanitor trata sobre usted, junto con las finalidades del tratamiento y los destinatarios.',
     Rectificación: 'hemos rectificado los datos personales indicados en su solicitud y actualizado nuestros registros.',
     Supresión: 'hemos suprimido los datos personales indicados en su solicitud, salvo aquellos que debemos conservar por obligación legal.',
     Oposición: 'hemos dejado de tratar sus datos personales para la finalidad a la que usted se opuso.',
     Portabilidad: 'adjuntamos sus datos personales en un formato estructurado, de uso común y lectura mecánica.',
   }
-  return `${head}${body[type]}\n\nSaludos cordiales,\nEquipo de protección de datos de Sanitaria Valparaíso`
+  return `${head}${body[type]}\n\nSaludos cordiales,\nEquipo de protección de datos de Sanitor`
 }
 
 type Edit = (r: ArcopRequest) => ArcopRequest | string
@@ -118,7 +118,7 @@ export function applyArcopOp(s: DemoState, op: ArcopOp): Result<DemoState, strin
           if (!isOpen(r)) return CLOSED
           const t = r.subtasks.find((x) => x.id === op.subtaskId)
           if (!t) return 'No existe la subtarea.'
-          if (!t.external || t.state === 'Completa') return 'Solo se envían recordatorios por subtareas pendientes de un área de Sanitaria Valparaíso.'
+          if (!t.external || t.state === 'Completa') return 'Solo se envían recordatorios por subtareas pendientes de un área de Sanitor.'
           return note(s, r, `Recordatorio simulado enviado a ${t.responsible} por "${t.name}"`)
         },
         'Recordatorio simulado',

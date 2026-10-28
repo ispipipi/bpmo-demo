@@ -96,7 +96,7 @@ function PlanEditor({ f, run }: { f: Finding; run: Run }) {
       )}
       <div className="grid grid-cols-1 gap-4 min-[900px]:grid-cols-[1.6fr_1fr_150px_auto]">
         <Field id="plan-action" label="Acción" required error={e('action')}>{(a) => <input {...a} value={action} onChange={(ev) => setAction(ev.target.value)} className={`${inputClass(!!e('action'))} h-10`} />}</Field>
-        <Field id="plan-owner" label="Responsable (área de Sanitaria Valparaíso)" required error={e('owner')}>
+        <Field id="plan-owner" label="Responsable (área de Sanitor)" required error={e('owner')}>
           {(a) => (
             <select {...a} value={owner} onChange={(ev) => setOwner(ev.target.value)} className={`${inputClass(!!e('owner'))} h-10`}>
               <option value="">Elige el área…</option>
@@ -237,7 +237,7 @@ export default function FindingPage() {
         return edit ? <PlanEditor f={f} run={run} /> : <ReadOnly>{f.plan.length === 0 ? 'Aún no hay acciones en el plan.' : `${f.plan.length} acciones en el plan.`}</ReadOnly>
       case 'Aprobación interna':
         return edit ? (
-          <SignoffForm title="Aprobación interna" sub="El Analista registra la aprobación del DPD o de Legal de Sanitaria Valparaíso." byLabel="Quién aprobó" dateLabel="Fecha de aprobación" refLabel="Referencia del respaldo" byPlaceholder="DPD de Sanitaria Valparaíso" refPlaceholder="Ej.: aprobacion_hal_0002.pdf" submitLabel="Registrar aprobación" onSubmit={(v) => run({ kind: 'approve', id: f.id, ...v }, 'Aprobación interna registrada.')} />
+          <SignoffForm title="Aprobación interna" sub="El Analista registra la aprobación del DPD o de Legal de Sanitor." byLabel="Quién aprobó" dateLabel="Fecha de aprobación" refLabel="Referencia del respaldo" byPlaceholder="DPD de Sanitor" refPlaceholder="Ej.: aprobacion_hal_0002.pdf" submitLabel="Registrar aprobación" onSubmit={(v) => run({ kind: 'approve', id: f.id, ...v }, 'Aprobación interna registrada.')} />
         ) : f.approval ? <ReadOnly>Aprobado por {f.approval.by} el {formatDate(f.approval.date)} ({f.approval.ref}).</ReadOnly> : <ReadOnly>Pendiente de aprobación interna.</ReadOnly>
       case 'Paquete listo':
         return (
@@ -255,7 +255,7 @@ export default function FindingPage() {
           f.filing ? (
             <p className="text-dense">Constancia registrada: {f.filing.by}, <span className="font-mono">{formatDate(f.filing.date)}</span> ({f.filing.ref}).</p>
           ) : (
-            <SignoffForm title="Registrar constancia de presentación" sub="Evidencia requerida del proceso. Los tres campos son obligatorios." byLabel="Quién presentó" dateLabel="Fecha de presentación" refLabel="Referencia del respaldo" byPlaceholder="DPD de Sanitaria Valparaíso" refPlaceholder="Ej.: comprobante_agencia_0002.pdf" submitLabel="Registrar constancia" onSubmit={(v) => run({ kind: 'file', id: f.id, ...v }, 'Constancia de presentación registrada.')} />
+            <SignoffForm title="Registrar constancia de presentación" sub="Evidencia requerida del proceso. Los tres campos son obligatorios." byLabel="Quién presentó" dateLabel="Fecha de presentación" refLabel="Referencia del respaldo" byPlaceholder="DPD de Sanitor" refPlaceholder="Ej.: comprobante_agencia_0002.pdf" submitLabel="Registrar constancia" onSubmit={(v) => run({ kind: 'file', id: f.id, ...v }, 'Constancia de presentación registrada.')} />
           )
         ) : f.filing ? <ReadOnly>Presentada por {f.filing.by} el {formatDate(f.filing.date)} ({f.filing.ref}).</ReadOnly> : <ReadOnly>Pendiente de constancia de presentación.</ReadOnly>
       case 'En seguimiento':

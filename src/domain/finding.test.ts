@@ -26,7 +26,7 @@ const withE8 = () => {
   return s
 }
 const EVAL = { severity: 'Media' as const, affectedData: 'Nombre y correo', holdersEstimate: '320', cause: 'Permisos heredados.' }
-const SIGN = { by: 'DPD de Sanitaria Valparaíso', date: D0, ref: 'APR-002.pdf' }
+const SIGN = { by: 'DPD de Sanitor', date: D0, ref: 'APR-002.pdf' }
 
 /** Lleva HAL-0002 (creado por E8) hasta la etapa pedida cumpliendo cada condición. */
 function upTo(stage: Finding['stage'], base = withE8()): DemoState {
@@ -35,7 +35,7 @@ function upTo(stage: Finding['stage'], base = withE8()): DemoState {
   const steps: [Finding['stage'], (x: DemoState) => DemoState][] = [
     ['Detectado', (x) => run(x, { kind: 'advance', id })],
     ['En evaluación', (x) => run(run(x, { kind: 'evaluate', id, ...EVAL }), { kind: 'advance', id })],
-    ['Plan de corrección', (x) => run(run(x, { kind: 'planAdd', id, action: 'Restringir el acceso', owner: 'TI de Sanitaria Valparaíso', dueAt: d(30) }), { kind: 'advance', id })],
+    ['Plan de corrección', (x) => run(run(x, { kind: 'planAdd', id, action: 'Restringir el acceso', owner: 'TI de Sanitor', dueAt: d(30) }), { kind: 'advance', id })],
     ['Aprobación interna', (x) => run(run(x, { kind: 'approve', id, ...SIGN }), { kind: 'advance', id })],
     ['Paquete listo', (x) => run(run(x, { kind: 'package', id }), { kind: 'advance', id })],
     ['Presentada', (x) => run(run(x, { kind: 'file', id, ...SIGN }), { kind: 'advance', id })],
@@ -91,12 +91,12 @@ describe('etapas y condiciones de avance (AC-08)', () => {
   })
 
   it('el plan sin acciones no avanza; con una acción sí; las acciones se pueden quitar', () => {
-    const s = run(upTo('Plan de corrección'), { kind: 'planAdd', id: 'HAL-0002', action: 'Restringir el acceso', owner: 'TI de Sanitaria Valparaíso', dueAt: d(30) })
+    const s = run(upTo('Plan de corrección'), { kind: 'planAdd', id: 'HAL-0002', action: 'Restringir el acceso', owner: 'TI de Sanitor', dueAt: d(30) })
     const base = run(s, { kind: 'planRemove', id: 'HAL-0002', actionId: 'HAL-0002-A1' })
     expect(advanceBlockers(f(base, 'HAL-0002'))).toEqual(['Agrega al menos una acción al plan de corrección.'])
     expect(fail(base, { kind: 'advance', id: 'HAL-0002' })).toContain('al menos una acción')
     expect(fail(base, { kind: 'planAdd', id: 'HAL-0002', action: '', owner: '', dueAt: '' })).toBeDefined()
-    const again = run(base, { kind: 'planAdd', id: 'HAL-0002', action: 'Otra acción', owner: 'TI de Sanitaria Valparaíso', dueAt: d(40) })
+    const again = run(base, { kind: 'planAdd', id: 'HAL-0002', action: 'Otra acción', owner: 'TI de Sanitor', dueAt: d(40) })
     expect(f(again, 'HAL-0002').plan[0]?.id).toBe('HAL-0002-A1')
   })
 
@@ -123,7 +123,7 @@ describe('etapas y condiciones de avance (AC-08)', () => {
       expect(fail(s, { kind: 'file', id: 'HAL-0002', ...bad })).toBeDefined()
     }
     const filed = run(s, { kind: 'file', id: 'HAL-0002', ...SIGN })
-    expect(f(filed, 'HAL-0002').filing).toEqual({ by: 'DPD de Sanitaria Valparaíso', date: D0, ref: 'APR-002.pdf' })
+    expect(f(filed, 'HAL-0002').filing).toEqual({ by: 'DPD de Sanitor', date: D0, ref: 'APR-002.pdf' })
     expect(f(run(filed, { kind: 'advance', id: 'HAL-0002' }), 'HAL-0002').stage).toBe('En seguimiento')
   })
 

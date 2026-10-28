@@ -1,6 +1,6 @@
 # BPMO · Demo H2D
 
-Demo recorrible de una PMO de cumplimiento de la Ley 21.719 (caso ficticio Sanitaria Valparaíso). Aplicación estática, sin backend y con datos 100 % ficticios.
+Demo recorrible de una PMO de cumplimiento de la Ley 21.719 (caso ficticio Sanitor). Aplicación estática, sin backend y con datos 100 % ficticios.
 
 - **Stack:** Vite, React 18, TypeScript estricto, Tailwind 3, `react-router-dom` con `HashRouter`.
 - **Estado:** `useReducer` + Context, persistido en `localStorage` (`npr_bpmo_h2d_demo_v1`).
