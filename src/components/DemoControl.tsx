@@ -29,7 +29,7 @@ function LogDialog({ onClose }: { onClose: () => void }) {
               {rows.map((r, i) => (
                 <tr key={rows.length - i} className="border-t border-line-soft align-top text-ink">
                   <td className="px-3 py-2 font-mono">{formatDate(r.at)}</td>
-                  <td className="px-3 py-2">{r.role === 'analista' ? 'Analista PMO' : 'Legal ESVAL'}</td>
+                  <td className="px-3 py-2">{r.role === 'analista' ? 'Analista PMO' : 'Legal Sanitaria Valparaíso'}</td>
                   <td className="px-3 py-2">{r.action}</td>
                   <td className="px-3 py-2 text-ink-soft">{r.entity}</td>
                 </tr>

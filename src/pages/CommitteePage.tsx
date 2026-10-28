@@ -21,7 +21,7 @@ import { useStore } from '../store/StoreProvider'
 
 const ST_TONE: Record<AgreementStatus, Tone> = { Vencido: 'crit', Pendiente: 'na', Cumplido: 'ok' }
 const ORDER: Record<AgreementStatus, number> = { Vencido: 0, Pendiente: 1, Cumplido: 2 }
-const OWNERS = [...AREAS.map((a) => `${a} ESVAL`), 'Comunicaciones ESVAL']
+const OWNERS = [...AREAS.map((a) => `${a} Sanitaria Valparaíso`), 'Comunicaciones Sanitaria Valparaíso']
 
 function PendingChip({ label }: { label: string }) {
   return <span className="inline-flex h-6 items-center gap-1.5 whitespace-nowrap rounded-full bg-sunken px-2.5 text-label text-ink-soft"><span className="h-2 w-2 rounded-full border-[1.5px] border-ink-faint" />{label}</span>

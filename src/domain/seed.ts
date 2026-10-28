@@ -276,18 +276,18 @@ const G3 = 'Protocolos y controles'
 const G4 = 'Capacitación y difusión'
 const G5 = 'Supervisión y mejora'
 const mpiItems: MpiItem[] = [
-  mpiItem(1, G1, 'Encargado de prevención designado y con recursos asignados', 'Cumple', 'Directorio ESVAL', 'acta_directorio_designacion.pdf', -58),
-  mpiItem(2, G1, 'Funciones y facultades del encargado documentadas', 'Cumple', 'Legal ESVAL', 'reglamento_encargado_v2.pdf', -58),
-  mpiItem(3, G1, 'Política de protección de datos aprobada y publicada', 'Cumple', 'Legal ESVAL', 'politica_pdp_v3.pdf', -41),
+  mpiItem(1, G1, 'Encargado de prevención designado y con recursos asignados', 'Cumple', 'Directorio Sanitaria Valparaíso', 'acta_directorio_designacion.pdf', -58),
+  mpiItem(2, G1, 'Funciones y facultades del encargado documentadas', 'Cumple', 'Legal Sanitaria Valparaíso', 'reglamento_encargado_v2.pdf', -58),
+  mpiItem(3, G1, 'Política de protección de datos aprobada y publicada', 'Cumple', 'Legal Sanitaria Valparaíso', 'politica_pdp_v3.pdf', -41),
   mpiItem(4, G2, 'Matriz de riesgos de tratamiento actualizada', 'Cumple', 'H2D', 'matriz_riesgos_2026.xlsx', -23),
   mpiItem(5, G2, 'Inventario de actividades de tratamiento (RAT) vigente', 'Cumple', 'H2D', 'rat_v12.xlsx', -5),
-  mpiItem(6, G2, 'Evaluación de proveedores que tratan datos', 'En progreso', 'Compras ESVAL', null, null),
+  mpiItem(6, G2, 'Evaluación de proveedores que tratan datos', 'En progreso', 'Compras Sanitaria Valparaíso', null, null),
   mpiItem(7, G3, 'Protocolo de atención de solicitudes ARCOP', 'Cumple', 'H2D', 'protocolo_arcop_v1.pdf', -38),
-  mpiItem(8, G3, 'Protocolo de gestión de brechas de seguridad', 'En progreso', 'TI ESVAL', null, null),
-  mpiItem(9, G3, 'Controles de acceso a sistemas con datos personales', 'Cumple', 'TI ESVAL', 'informe_accesos_q4.pdf', -25),
-  mpiItem(10, G4, 'Programa de capacitación anual ejecutado', 'En progreso', 'RRHH ESVAL', null, null),
-  mpiItem(11, G5, 'Canal de denuncias con resguardo de identidad', 'Cumple', 'Cumplimiento ESVAL', 'canal_denuncias_ficha.pdf', -33),
-  mpiItem(12, G5, 'Auditoría externa del modelo', 'No aplica', 'Directorio ESVAL', null, -4, 'Primera certificación: la auditoría se realiza tras 12 meses.'),
+  mpiItem(8, G3, 'Protocolo de gestión de brechas de seguridad', 'En progreso', 'TI Sanitaria Valparaíso', null, null),
+  mpiItem(9, G3, 'Controles de acceso a sistemas con datos personales', 'Cumple', 'TI Sanitaria Valparaíso', 'informe_accesos_q4.pdf', -25),
+  mpiItem(10, G4, 'Programa de capacitación anual ejecutado', 'En progreso', 'RRHH Sanitaria Valparaíso', null, null),
+  mpiItem(11, G5, 'Canal de denuncias con resguardo de identidad', 'Cumple', 'Cumplimiento Sanitaria Valparaíso', 'canal_denuncias_ficha.pdf', -33),
+  mpiItem(12, G5, 'Auditoría externa del modelo', 'No aplica', 'Directorio Sanitaria Valparaíso', null, -4, 'Primera certificación: la auditoría se realiza tras 12 meses.'),
 ]
 
 const findings: Finding[] = [
@@ -302,11 +302,11 @@ const findings: Finding[] = [
     affectedData: 'Nombre y correo electrónico',
     holdersEstimate: 320,
     cause: 'Permisos de carpeta heredados sin revisión.',
-    plan: [{ id: 'HAL-0001-A1', action: 'Restringir el acceso y mover la planilla a un repositorio controlado', owner: 'TI de ESVAL', dueAt: d(-80), done: true }],
-    approval: { by: 'DPD de ESVAL', date: d(-82), ref: 'APR-001.pdf' },
+    plan: [{ id: 'HAL-0001-A1', action: 'Restringir el acceso y mover la planilla a un repositorio controlado', owner: 'TI de Sanitaria Valparaíso', dueAt: d(-80), done: true }],
+    approval: { by: 'DPD de Sanitaria Valparaíso', date: d(-82), ref: 'APR-001.pdf' },
     evaluatedAt: d(-88),
     packageGeneratedAt: d(-81),
-    filing: { by: 'DPD de ESVAL', date: d(-78), ref: 'presentacion_001.pdf' },
+    filing: { by: 'DPD de Sanitaria Valparaíso', date: d(-78), ref: 'presentacion_001.pdf' },
     closedAt: d(-60),
     closeResult: 'Plan de corrección ejecutado; sin observaciones de la Agencia.',
     history: [h(-90, A1, 'Hallazgo detectado'), h(-60, A1, 'Caso cerrado')],
@@ -335,7 +335,7 @@ const committee = {
   ],
   agreements: [
     agreement(1, 'SES-001', 'Actualizar la política de privacidad del sitio web', 'Marketing', -35, -38),
-    agreement(2, 'SES-001', 'Revisar los accesos a la carpeta de clientes', 'TI de ESVAL', -40, -42),
+    agreement(2, 'SES-001', 'Revisar los accesos a la carpeta de clientes', 'TI de Sanitaria Valparaíso', -40, -42),
     agreement(3, 'SES-002', 'Enviar el listado de proveedores con acceso a datos', 'Compras', 18, null),
     agreement(4, 'SES-002', 'Definir el plan de capacitación semestral', 'Recursos Humanos', 21, null),
     agreement(5, 'SES-002', 'Evaluar la madurez de los proveedores sin evaluar', 'Compras', 35, null),

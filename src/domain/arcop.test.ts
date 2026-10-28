@@ -80,11 +80,11 @@ describe('subtareas', () => {
 })
 
 describe('recordatorios simulados', () => {
-  it('solo por subtareas no completas de un área de ESVAL, y quedan en el historial del caso', () => {
+  it('solo por subtareas no completas de un área de Sanitaria Valparaíso, y quedan en el historial del caso', () => {
     const s = createInitialState()
     const legal = get(s, 'ARCOP-0003').subtasks[2]!
     const next = run(s, { kind: 'reminder', id: 'ARCOP-0003', subtaskId: legal.id })
-    expect(get(next, 'ARCOP-0003').history.at(-1)?.text).toBe('Recordatorio simulado enviado a Legal de ESVAL por "Validación legal"')
+    expect(get(next, 'ARCOP-0003').history.at(-1)?.text).toBe('Recordatorio simulado enviado a Legal de Sanitaria Valparaíso por "Validación legal"')
     const h2d = get(s, 'ARCOP-0003').subtasks[4]!
     expect(fail(s, { kind: 'reminder', id: 'ARCOP-0003', subtaskId: h2d.id })).toContain('Solo se envían recordatorios')
     const done = get(s, 'ARCOP-0003').subtasks[0]!

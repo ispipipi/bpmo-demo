@@ -6,9 +6,9 @@ import { FINDING_STAGES, type DemoState, type Finding, type FindingSeverity, typ
 
 const ACTOR = 'Analista PMO'
 export const MIN_TEXT = 10
-export const ESVAL_AREAS = ['TI de ESVAL', 'Legal de ESVAL', 'Recursos Humanos de ESVAL', 'Operaciones de ESVAL', 'Atención a clientes de ESVAL', 'Compras de ESVAL'] as const
+export const ESVAL_AREAS = ['TI de Sanitaria Valparaíso', 'Legal de Sanitaria Valparaíso', 'Recursos Humanos de Sanitaria Valparaíso', 'Operaciones de Sanitaria Valparaíso', 'Atención a clientes de Sanitaria Valparaíso', 'Compras de Sanitaria Valparaíso'] as const
 export const SEVERITIES: readonly FindingSeverity[] = ['Baja', 'Media', 'Alta']
-export const PACKAGE_NOTICE = 'H2D prepara el paquete; la presentación ante la Agencia la realiza quien ejerce como DPD formal (en este demo, el DPD de ESVAL)'
+export const PACKAGE_NOTICE = 'H2D prepara el paquete; la presentación ante la Agencia la realiza quien ejerce como DPD formal (en este demo, el DPD de Sanitaria Valparaíso)'
 export const HYPOTHETICAL_NOTICE = 'Flujo hipotético a validar: la Agencia aún no opera y no hay reglamentación operativa.'
 
 export type FindingOp =
@@ -57,7 +57,7 @@ export type ActionErrors = Partial<Record<'action' | 'owner' | 'dueAt', string>>
 export function validateAction(o: { action: string; owner: string; dueAt: string }): ActionErrors {
   const e: ActionErrors = {}
   if (!filled(o.action)) e.action = 'Describe la acción.'
-  if (!filled(o.owner)) e.owner = 'Indica el área de ESVAL responsable.'
+  if (!filled(o.owner)) e.owner = 'Indica el área de Sanitaria Valparaíso responsable.'
   if (!/^\d{4}-\d{2}-\d{2}$/.test(o.dueAt)) e.dueAt = 'Indica la fecha comprometida.'
   return e
 }
@@ -82,7 +82,7 @@ export function advanceBlockers(f: Finding): string[] {
     case 'Plan de corrección':
       return f.plan.length === 0 ? ['Agrega al menos una acción al plan de corrección.'] : []
     case 'Aprobación interna':
-      return f.approval ? [] : ['Registra la aprobación interna del DPD o Legal de ESVAL.']
+      return f.approval ? [] : ['Registra la aprobación interna del DPD o Legal de Sanitaria Valparaíso.']
     case 'Paquete listo':
       return f.packageGeneratedAt ? [] : ['Genera el paquete antes de registrar su presentación.']
     case 'Presentada':
